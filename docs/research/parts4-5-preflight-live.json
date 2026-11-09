@@ -1,0 +1,277 @@
+{
+  "timestamp": "2026-11-03T17:04:49.920Z",
+  "mode": "PUBLIC_READ_ONLY_SIMULATION_NO_SIGNER_NO_BROADCAST",
+  "sampleOwner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+  "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+  "checks": {
+    "market": {
+      "status": "PASS",
+      "value": {
+        "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+        "metadata": {
+          "baseDecimals": 9,
+          "baseSymbol": "SOL",
+          "tickSize": "10000000000000000",
+          "minQuantity": "100000000",
+          "lotSize": "10000000",
+          "initialMarginBps": "250",
+          "maintenanceMarginBps": "125",
+          "closeOutMarginBps": "62",
+          "maxOpenInterest": "95308880000000",
+          "maxPositionSize": "4765440000000",
+          "takerFeeBpsTimes1k": "0",
+          "makerFeeBpsTimes1k": "0",
+          "insuranceFundShareBps": "0"
+        },
+        "restricted": false,
+        "blockNumber": "40716621",
+        "blockTimestamp": "1793725489",
+        "observedAt": 1793725491178,
+        "decimals": 18,
+        "symbol": "USDso",
+        "mark": {
+          "ok": true,
+          "value": [
+            true,
+            "93315117321723000000"
+          ]
+        },
+        "index": {
+          "ok": true,
+          "value": [
+            "93363715049336000000",
+            "1793725488"
+          ]
+        },
+        "funding": {
+          "ok": true,
+          "value": "408142289380194"
+        },
+        "interest": {
+          "ok": true,
+          "value": "55705580000000"
+        },
+        "parameters": {
+          "ok": true,
+          "value": {
+            "fundingCalculationWindowSec": "28800",
+            "fundingSettlementIntervalSec": "3600",
+            "interestRatePerWindow": "100000000000000",
+            "maxFundingRatePerWindow": "40000000000000000",
+            "dampener": "500000000000000",
+            "emaSmoothingAlpha": "500000000000000000",
+            "maxOracleStalenessSec": "5"
+          }
+        },
+        "lastFunding": {
+          "ok": true,
+          "value": "1793724853000000000"
+        },
+        "bids": {
+          "ok": true,
+          "value": [
+            {
+              "price": "93420000000000000000",
+              "quantity": "10710000000"
+            },
+            {
+              "price": "93410000000000000000",
+              "quantity": "21420000000"
+            },
+            {
+              "price": "93400000000000000000",
+              "quantity": "144610000000"
+            },
+            {
+              "price": "93370000000000000000",
+              "quantity": "67430000000"
+            },
+            {
+              "price": "93360000000000000000",
+              "quantity": "964090000000"
+            },
+            {
+              "price": "93310000000000000000",
+              "quantity": "61150000000"
+            },
+            {
+              "price": "93300000000000000000",
+              "quantity": "53590000000"
+            },
+            {
+              "price": "93200000000000000000",
+              "quantity": "107300000000"
+            },
+            {
+              "price": "93170000000000000000",
+              "quantity": "52560000000"
+            },
+            {
+              "price": "93130000000000000000",
+              "quantity": "52610000000"
+            }
+          ]
+        },
+        "asks": {
+          "ok": true,
+          "value": [
+            {
+              "price": "93450000000000000000",
+              "quantity": "10710000000"
+            },
+            {
+              "price": "93460000000000000000",
+              "quantity": "74930000000"
+            },
+            {
+              "price": "93470000000000000000",
+              "quantity": "74990000000"
+            },
+            {
+              "price": "93480000000000000000",
+              "quantity": "214290000000"
+            },
+            {
+              "price": "93540000000000000000",
+              "quantity": "749800000000"
+            },
+            {
+              "price": "93560000000000000000",
+              "quantity": "106890000000"
+            },
+            {
+              "price": "93660000000000000000",
+              "quantity": "160170000000"
+            },
+            {
+              "price": "93690000000000000000",
+              "quantity": "69600000000"
+            },
+            {
+              "price": "93720000000000000000",
+              "quantity": "69550000000"
+            },
+            {
+              "price": "93750000000000000000",
+              "quantity": "69550000000"
+            }
+          ]
+        }
+      }
+    },
+    "sdkMaximum": {
+      "status": "PASS",
+      "value": {
+        "priceable": true,
+        "asOfBlock": "40716650",
+        "maxQuantity": "245260000000",
+        "unalignedMaxQuantity": "245260749659",
+        "increasingQuantity": "245260000000",
+        "reducingQuantity": "0",
+        "lockAmount": "572130265000000000000",
+        "topUpRequired": "0",
+        "wallet": {
+          "balance": "23546264000000000000",
+          "allowance": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        },
+        "fundingPayer": null,
+        "mainWalletCapacity": null,
+        "ownWalletPull": "0",
+        "mainWalletPull": "0",
+        "mainFundingBlocked": false,
+        "placeable": true,
+        "limitedBy": "initialMargin",
+        "lotSize": "10000000",
+        "minQuantity": "100000000",
+        "maxPositionSize": "4765440000000",
+        "positionSize": "260000000",
+        "markPrice": "93316865494864500000",
+        "effectiveImfBps": "250"
+      }
+    },
+    "sdkMargin": {
+      "status": "PASS",
+      "value": {
+        "priceable": true,
+        "asOfBlock": "40716719",
+        "effectiveImfBps": "250",
+        "markPrice": "93315117321723000000",
+        "unlockedCollateral": "583643632399799608324",
+        "equity": "579616173028131985936",
+        "imRequirement": "7481949527794913700",
+        "wallet": {
+          "balance": "23546264000000000000",
+          "allowance": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+        },
+        "fundingPayer": null,
+        "mainWalletCapacity": null,
+        "increasingQuantity": "100000000",
+        "reducingQuantity": "0",
+        "lockAmount": "233275000000000000",
+        "initialMarginPortion": "233275000000000000",
+        "adverseGapPortion": "0",
+        "leverageSurcharge": "0",
+        "feeHeadroom": "0",
+        "topUpRequired": "0",
+        "walletCoversTopUp": true,
+        "ownWalletPull": "0",
+        "mainWalletPull": "0",
+        "mainFundingBlocked": false,
+        "hasCollateralForLock": true,
+        "meetsInitialMargin": true,
+        "voucherBlocked": false,
+        "restrictedBlocked": false,
+        "isolationBlocked": false,
+        "sufficient": true
+      }
+    },
+    "sdkBuildOnly": {
+      "status": "PASS",
+      "value": {
+        "chainId": 50383,
+        "to": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+        "data": "0x4e978373000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050eefb69f57b300000000000000000000000000000000000000000000000000000000000005f5e10000000000000000000000000000000000000000000000000018e498629eb244400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "value": "0",
+        "description": "Place perp long order on pool 0xB483ec1fb34996638677c20ab087b16F1896FA53",
+        "functionName": "placeOrder"
+      }
+    },
+    "actualContractSimulation": {
+      "status": "PASS",
+      "value": {
+        "blockNumber": "40716728",
+        "simulation": {
+          "data": "0x000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000022600000000008c96fc"
+        },
+        "gas": "2273362",
+        "statement": "Public-address simulation, not wallet authority or a transaction."
+      }
+    },
+    "fullDirectWalletPreflight": {
+      "status": "PASS",
+      "value": {
+        "intent": {
+          "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+          "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+          "isBid": true,
+          "price": "93310000000000000000",
+          "quantity": "100000000",
+          "orderType": 0,
+          "expireTimestampNs": "1793726103028000000"
+        },
+        "call": {
+          "chainId": 50383,
+          "to": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+          "data": "0x4e978373000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050eefb69f57b300000000000000000000000000000000000000000000000000000000000005f5e10000000000000000000000000000000000000000000000000018e498631b5465000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "value": "0",
+          "description": "Place perp long order on pool 0xB483ec1fb34996638677c20ab087b16F1896FA53",
+          "functionName": "placeOrder"
+        },
+        "gasLimit": "2955952",
+        "maximumGasCost": "35471424000000000",
+        "checkedAt": 1793725504920,
+        "statement": "No wallet was connected. Passing is not authorization to send for this public address."
+      }
+    }
+  }
+}

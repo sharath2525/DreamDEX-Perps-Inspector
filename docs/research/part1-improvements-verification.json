@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-11-07T10:02:47.840Z",
+  "status": "PASS",
+  "playwright": {
+    "startTime": "2026-11-07T09:59:29.419Z",
+    "duration": 105009.164,
+    "expected": 90,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "sourceBundlePatternCheck": {
+    "timestamp": "2026-11-07T10:01:19.805Z",
+    "status": "PASS",
+    "sourceFilesChecked": 74,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "f1343e1bc74a2192bdac7474388d8415e6fe800749cf1028c5ea9044a00344b8",
+  "liveAccountProbe": "part1-improvements-live.json",
+  "realUserTestReport": "NOT SUPPLIED",
+  "realPeiOriginatedTransaction": "UNVERIFIED",
+  "exactRevisedCutoff": "UNCONFIRMED",
+  "emailWhitelist": "UNCONFIRMED",
+  "limits": [
+    "Chromium automation; actual extension acceptance is separate",
+    "Synthetic transaction fixtures are not bounty evidence",
+    "200% zoom-equivalent viewport; native zoom accelerator not exercised"
+  ]
+}

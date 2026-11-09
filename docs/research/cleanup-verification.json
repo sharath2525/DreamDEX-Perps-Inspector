@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-11-08T03:27:32.541Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "startTime": "2026-11-08T03:24:45.956Z",
+    "duration": 116027.71699999999,
+    "expected": 111,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "deterministicTests": 109,
+  "liveReadTests": 2,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-08T03:25:16.982Z",
+    "status": "PASS",
+    "sourceFilesChecked": 79,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "58b20f88d7c3c8c523f772466c96cd8c4035ae26e5f2b37014ede42c1b864910",
+  "fixes": [
+    "report input follows history",
+    "diagnostic run isolation across account changes",
+    "zero-address discovery filter",
+    "accurate storage disclosure"
+  ],
+  "ui": [
+    "wallet account candidates with deliberate selection",
+    "compact secondary controls and raw evidence",
+    "actionable overview shortcuts",
+    "README and documentation index"
+  ],
+  "browserData": "No schema change or clearing",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "Operator reverse discovery incomplete",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

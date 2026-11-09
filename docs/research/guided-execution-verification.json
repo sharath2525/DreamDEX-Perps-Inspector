@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-11-09T06:30:34.914Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "startTime": "2026-11-09T06:28:38.602Z",
+    "duration": 105151.72,
+    "expected": 120,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "deterministicTests": 118,
+  "liveReadTests": 2,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-09T06:29:09.413Z",
+    "status": "PASS",
+    "sourceFilesChecked": 84,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "acbe6b9f4a1b018a398eb43dfbd8e632a61ec6e0d5ae7da66aaefdbfeb82569f",
+  "fixes": [
+    "draft-scoped preflight errors and wallet attempt panels",
+    "superseded operation reads aborted",
+    "edited recovery hash cannot display another receipt"
+  ],
+  "ui": [
+    "six-step guided execution for direct and delegated orders",
+    "observed versus possible explanations and actionable recovery",
+    "mined outcome explanations with explicit unknowns",
+    "report-to-exposure return links and public case summaries",
+    "desktop and 320/390px mobile containment",
+    "point-by-point user testing guide"
+  ],
+  "browserData": "No schema change or clearing",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "Operator reverse discovery incomplete",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

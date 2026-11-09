@@ -1,0 +1,140 @@
+{
+  "observedAt": "2026-11-07T09:53:15.650Z",
+  "mode": "PUBLIC_READ_ONLY_NO_SIGNER",
+  "sdkVersion": "0.32.1",
+  "chainId": 50383,
+  "owner": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+  "actor": "0x9fb5B47901c9aD427b1eA9bb96c182eDD0EEAFc5",
+  "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+  "checks": {
+    "signerGas": {
+      "status": "READ_RETURNED",
+      "value": {
+        "value": "5000000000000000000",
+        "block": "43912520"
+      }
+    },
+    "operatorPermission": {
+      "status": "READ_RETURNED",
+      "value": {
+        "owner": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+        "operator": "0x9fb5B47901c9aD427b1eA9bb96c182eDD0EEAFc5",
+        "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+        "registry": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a",
+        "blockNumber": "43912534",
+        "observedAt": 1794045198102,
+        "place": true,
+        "cancel": true,
+        "reduce": true
+      }
+    },
+    "discovery": {
+      "status": "READ_RETURNED",
+      "value": {
+        "candidates": [],
+        "warnings": [],
+        "truncated": false,
+        "observedAt": 1794045198942,
+        "coverage": "Owner and derived-account indexes only. Operator-linked accounts may not appear. Enter the trading address once if missing."
+      }
+    },
+    "accountAndRisk": {
+      "status": "READ_RETURNED",
+      "value": {
+        "block": "43912522",
+        "observedAt": 1794045196635,
+        "unlocked": "1004119695277788569689",
+        "locked": "0",
+        "health": {
+          "ok": true,
+          "value": [
+            "1006271410422930647029",
+            "12680534957166718514",
+            "6340267478583359257",
+            "3144772669377346193"
+          ]
+        },
+        "floor": {
+          "ok": true,
+          "value": "1000000000000000000000"
+        },
+        "withdrawable": {
+          "ok": true,
+          "value": "4119695277788569689"
+        },
+        "positions": [
+          {
+            "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "-596000",
+                "avgEntryPrice": "76117800000000000000000",
+                "entryFundingIndex": "7370988279788506510115865871019270343750",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 8,
+                "baseSymbol": "BTC",
+                "tickSize": "100000000000000000",
+                "minQuantity": "13000",
+                "lotSize": "1000",
+                "initialMarginBps": "250",
+                "maintenanceMarginBps": "125",
+                "closeOutMarginBps": "62",
+                "maxOpenInterest": "49363090000",
+                "maxPositionSize": "10000000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            }
+          },
+          {
+            "pool": "0xD6Cb1DD58580B84D76068aC21594219ce03aeddf",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "24300000000000000",
+                "avgEntryPrice": "2240057613168724279835",
+                "entryFundingIndex": "24408088509853254228422486978813500000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 18,
+                "baseSymbol": "ETH",
+                "tickSize": "10000000000000000",
+                "minQuantity": "4000000000000000",
+                "lotSize": "100000000000000",
+                "initialMarginBps": "250",
+                "maintenanceMarginBps": "125",
+                "closeOutMarginBps": "62",
+                "maxOpenInterest": "7991225000000000000000",
+                "maxPositionSize": "399561200000000000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            }
+          }
+        ],
+        "pendingOrderCount": 0,
+        "positionCoverageComplete": true,
+        "orderCoverageComplete": true,
+        "zeroShockReconciled": true,
+        "differences": {
+          "equity": "0",
+          "initialMargin": "0",
+          "maintenanceMargin": "0",
+          "closeOutMargin": "0"
+        }
+      }
+    }
+  }
+}

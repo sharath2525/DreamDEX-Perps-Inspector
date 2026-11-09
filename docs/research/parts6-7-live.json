@@ -1,0 +1,1458 @@
+{
+  "timestamp": "2026-11-04T06:21:27.235Z",
+  "mode": "PUBLIC_READ_ONLY_FROZEN_SCENARIOS_NO_WALLET",
+  "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+  "checks": {
+    "publicAccountSnapshot": {
+      "status": "PASS",
+      "value": {
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41194437",
+        "blockTimestamp": "1793773286",
+        "observedAt": 1793773288721,
+        "decimals": 18,
+        "symbol": "USDso",
+        "state": {
+          "unlockedCollateralBalance": "583643632399799608324",
+          "lockedCollateral": "0",
+          "activePerpPools": [
+            "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "0x34fa62909f77699a7a6278D992F72Ff31c7a619D"
+          ]
+        },
+        "health": {
+          "ok": true,
+          "value": [
+            "579755401691134858718",
+            "7470970379406646750",
+            "3735485189703323375",
+            "1866537618131476736"
+          ]
+        },
+        "status": {
+          "ok": true,
+          "value": 0
+        },
+        "withdrawable": {
+          "ok": true,
+          "value": "583643632399799608324"
+        },
+        "floor": {
+          "ok": true,
+          "value": "0"
+        },
+        "isolated": {
+          "ok": true,
+          "value": false
+        },
+        "nativeBalance": {
+          "ok": true,
+          "value": "996668813711693000000000"
+        },
+        "tokenBalance": {
+          "ok": true,
+          "value": "23546264000000000000"
+        },
+        "code": {
+          "ok": true
+        },
+        "voucher": {
+          "ok": true,
+          "value": {
+            "distributor": "0x2ACD9EFdA721450906bfE1bef3edE269636E42C4",
+            "claimed": false,
+            "expiresAt": "0"
+          }
+        },
+        "positions": [
+          {
+            "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "-22000000000",
+                "avgEntryPrice": "1196900000000000000",
+                "entryFundingIndex": "3681952802413333336438400918250000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 9,
+                "baseSymbol": "SUI",
+                "tickSize": "100000000000000",
+                "minQuantity": "13000000000",
+                "lotSize": "1000000000",
+                "initialMarginBps": "1000",
+                "maintenanceMarginBps": "500",
+                "closeOutMarginBps": "250",
+                "maxOpenInterest": "2540036000000000",
+                "maxPositionSize": "127000000000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "889205414064000000",
+                "inputs": {
+                  "size": "-22000000000",
+                  "avgEntryPrice": "1196900000000000000",
+                  "entryFundingIndex": "3681952802413333336438400918250000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "889205414064000000",
+                  "projectedCumulativeFunding": "12874525303772415063995388894625000",
+                  "oneBase": "1000000000",
+                  "effectiveImfBps": "1000",
+                  "maintenanceMarginBps": "500",
+                  "closeOutMarginBps": "250"
+                },
+                "metrics": {
+                  "size": "-22000000000",
+                  "notional": "19562519109408000000",
+                  "unrealizedPnl": "6769280890592000000",
+                  "accruedFunding": "-202236595029899798",
+                  "equityContribution": "6971517485621899798",
+                  "initialMarginRequirement": "1956251910940800000",
+                  "maintenanceMarginRequirement": "978125955470400000",
+                  "closeOutMarginRequirement": "489062977735200000",
+                  "returnOnMarginBps": "35637"
+                }
+              }
+            }
+          },
+          {
+            "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "260000000",
+                "avgEntryPrice": "120220000000000000000",
+                "entryFundingIndex": "390136832737439463360672022381875000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 9,
+                "baseSymbol": "SOL",
+                "tickSize": "10000000000000000",
+                "minQuantity": "100000000",
+                "lotSize": "10000000",
+                "initialMarginBps": "250",
+                "maintenanceMarginBps": "125",
+                "closeOutMarginBps": "62",
+                "maxOpenInterest": "95308880000000",
+                "maxPositionSize": "4765440000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "92690516937304000000",
+                "inputs": {
+                  "size": "260000000",
+                  "avgEntryPrice": "120220000000000000000",
+                  "entryFundingIndex": "390136832737439463360672022381875000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "92690516937304000000",
+                  "projectedCumulativeFunding": "2711188016890087736033517967109437500",
+                  "oneBase": "1000000000",
+                  "effectiveImfBps": "250",
+                  "maintenanceMarginBps": "125",
+                  "closeOutMarginBps": "62"
+                },
+                "metrics": {
+                  "size": "260000000",
+                  "notional": "24099534403699040000",
+                  "unrealizedPnl": "-7157665596300960000",
+                  "accruedFunding": "603473307879688551",
+                  "equityContribution": "-7761138904180648551",
+                  "initialMarginRequirement": "602488360092476000",
+                  "maintenanceMarginRequirement": "301244180046238000",
+                  "closeOutMarginRequirement": "149417113302934048",
+                  "returnOnMarginBps": "-128819"
+                }
+              }
+            }
+          },
+          {
+            "pool": "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "-1500000000",
+                "avgEntryPrice": "216300000000000000",
+                "entryFundingIndex": "713755606603543750000000000000000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 7,
+                "baseSymbol": "XLM",
+                "tickSize": "100000000000000",
+                "minQuantity": "540000000",
+                "lotSize": "10000000",
+                "initialMarginBps": "1000",
+                "maintenanceMarginBps": "500",
+                "closeOutMarginBps": "250",
+                "maxOpenInterest": "107111200000000",
+                "maxPositionSize": "5355560000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "162583817598000000",
+                "inputs": {
+                  "size": "-1500000000",
+                  "avgEntryPrice": "216300000000000000",
+                  "entryFundingIndex": "713755606603543750000000000000000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "162583817598000000",
+                  "projectedCumulativeFunding": "2271554901644128125000000000000000",
+                  "oneBase": "10000000",
+                  "effectiveImfBps": "1000",
+                  "maintenanceMarginBps": "500",
+                  "closeOutMarginBps": "250"
+                },
+                "metrics": {
+                  "size": "-1500000000",
+                  "notional": "24387572639700000000",
+                  "unrealizedPnl": "8057427360300000000",
+                  "accruedFunding": "-233669894256087656",
+                  "equityContribution": "8291097254556087656",
+                  "initialMarginRequirement": "2438757263970000000",
+                  "maintenanceMarginRequirement": "1219378631985000000",
+                  "closeOutMarginRequirement": "609689315992500000",
+                  "returnOnMarginBps": "33997"
+                }
+              }
+            }
+          },
+          {
+            "pool": "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "-1000000",
+                "avgEntryPrice": "304694000000000000000",
+                "entryFundingIndex": "1335984261381803183260897078042750000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 9,
+                "baseSymbol": "TAO",
+                "tickSize": "1000000000000000",
+                "minQuantity": "44000000",
+                "lotSize": "1000000",
+                "initialMarginBps": "1000",
+                "maintenanceMarginBps": "500",
+                "closeOutMarginBps": "250",
+                "maxOpenInterest": "2185491000000",
+                "maxPositionSize": "218549000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "227465487557207500000",
+                "inputs": {
+                  "size": "-1000000",
+                  "avgEntryPrice": "304694000000000000000",
+                  "entryFundingIndex": "1335984261381803183260897078042750000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "227465487557207500000",
+                  "projectedCumulativeFunding": "3597435620499838359673966563420812500",
+                  "oneBase": "1000000000",
+                  "effectiveImfBps": "1000",
+                  "maintenanceMarginBps": "500",
+                  "closeOutMarginBps": "250"
+                },
+                "metrics": {
+                  "size": "-1000000",
+                  "notional": "227465487557207500",
+                  "unrealizedPnl": "77228512442792500",
+                  "accruedFunding": "-2261451359118035",
+                  "equityContribution": "79489963801910535",
+                  "initialMarginRequirement": "22746548755720750",
+                  "maintenanceMarginRequirement": "11373274377860375",
+                  "closeOutMarginRequirement": "5686637188930188",
+                  "returnOnMarginBps": "34945"
+                }
+              }
+            }
+          },
+          {
+            "pool": "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "10000000000000000000",
+                "avgEntryPrice": "564010204081632652",
+                "entryFundingIndex": "6910261998997287438101729376875000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 18,
+                "baseSymbol": "WLD",
+                "tickSize": "100000000000000",
+                "minQuantity": "26000000000000000000",
+                "lotSize": "1000000000000000000",
+                "initialMarginBps": "1000",
+                "maintenanceMarginBps": "500",
+                "closeOutMarginBps": "250",
+                "maxOpenInterest": "5056000000000000000000000",
+                "maxPositionSize": "126400000000000000000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "382744046883000000",
+                "inputs": {
+                  "size": "10000000000000000000",
+                  "avgEntryPrice": "564010204081632652",
+                  "entryFundingIndex": "6910261998997287438101729376875000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "382744046883000000",
+                  "projectedCumulativeFunding": "11438862196596455397591577405812500",
+                  "oneBase": "1000000000000000000",
+                  "effectiveImfBps": "1000",
+                  "maintenanceMarginBps": "500",
+                  "closeOutMarginBps": "250"
+                },
+                "metrics": {
+                  "size": "10000000000000000000",
+                  "notional": "3827440468830000000",
+                  "unrealizedPnl": "-1812661571986326520",
+                  "accruedFunding": "45286001975991680",
+                  "equityContribution": "-1857947573962318200",
+                  "initialMarginRequirement": "382744046883000000",
+                  "maintenanceMarginRequirement": "191372023441500000",
+                  "closeOutMarginRequirement": "95686011720750000",
+                  "returnOnMarginBps": "-48543"
+                }
+              }
+            }
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278D992F72Ff31c7a619D",
+            "position": {
+              "ok": true,
+              "value": {
+                "size": "109000000",
+                "avgEntryPrice": "276000000000000000",
+                "entryFundingIndex": "801617847844375000000000000000000",
+                "lastUpdatedTimestampNs": "0"
+              }
+            },
+            "metadata": {
+              "ok": true,
+              "value": {
+                "baseDecimals": 6,
+                "baseSymbol": "ADA",
+                "tickSize": "100000000000000",
+                "minQuantity": "46000000",
+                "lotSize": "1000000",
+                "initialMarginBps": "1000",
+                "maintenanceMarginBps": "500",
+                "closeOutMarginBps": "250",
+                "maxOpenInterest": "9018712000000",
+                "maxPositionSize": "450934000000",
+                "takerFeeBpsTimes1k": "0",
+                "makerFeeBpsTimes1k": "0",
+                "insuranceFundShareBps": "0"
+              }
+            },
+            "analytics": {
+              "ok": true,
+              "value": {
+                "markPrice": "189723142088500000",
+                "inputs": {
+                  "size": "109000000",
+                  "avgEntryPrice": "276000000000000000",
+                  "entryFundingIndex": "801617847844375000000000000000000",
+                  "lastUpdatedTimestampNs": "0",
+                  "markPrice": "189723142088500000",
+                  "projectedCumulativeFunding": "2701355665717593750000000000000000",
+                  "oneBase": "1000000",
+                  "effectiveImfBps": "1000",
+                  "maintenanceMarginBps": "500",
+                  "closeOutMarginBps": "250"
+                },
+                "metrics": {
+                  "size": "109000000",
+                  "notional": "20679822487646500000",
+                  "unrealizedPnl": "-9404177512353500000",
+                  "accruedFunding": "207071422148180844",
+                  "equityContribution": "-9611248934501680844",
+                  "initialMarginRequirement": "2067982248764650000",
+                  "maintenanceMarginRequirement": "1033991124382325000",
+                  "closeOutMarginRequirement": "516995562191162500",
+                  "returnOnMarginBps": "-46477"
+                }
+              }
+            }
+          }
+        ],
+        "orders": [],
+        "orderCount": 0,
+        "scannedPools": 21,
+        "failedOrderPools": [],
+        "warnings": [],
+        "positionCoverageComplete": true,
+        "analyticsComplete": true,
+        "orderCoverageComplete": true,
+        "indexedPositionCount": 6
+      }
+    },
+    "scenario0": {
+      "status": "PASS",
+      "value": {
+        "schema": "pei.risk-scenario.v1",
+        "chainId": 50383,
+        "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+        "sdkVersion": "0.32.1",
+        "mode": "FROZEN_SNAPSHOT_HYPOTHETICAL_NO_TRANSACTIONS",
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41194437",
+        "observedAt": 1793773288721,
+        "decimals": 18,
+        "symbol": "USDso",
+        "collateral": "583643632399799608324",
+        "uniformBps": "0",
+        "rows": [
+          {
+            "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "symbol": "SUI",
+            "baseDecimals": 9,
+            "bps": "0",
+            "known": true,
+            "basePrice": "889205414064000000",
+            "scenarioPrice": "889205414064000000",
+            "baseline": {
+              "size": "-22000000000",
+              "notional": "19562519109408000000",
+              "unrealizedPnl": "6769280890592000000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "6971517485621899798",
+              "initialMarginRequirement": "1956251910940800000",
+              "maintenanceMarginRequirement": "978125955470400000",
+              "closeOutMarginRequirement": "489062977735200000",
+              "returnOnMarginBps": "35637"
+            },
+            "scenario": {
+              "size": "-22000000000",
+              "notional": "19562519109408000000",
+              "unrealizedPnl": "6769280890592000000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "6971517485621899798",
+              "initialMarginRequirement": "1956251910940800000",
+              "maintenanceMarginRequirement": "978125955470400000",
+              "closeOutMarginRequirement": "489062977735200000",
+              "returnOnMarginBps": "35637"
+            },
+            "concentrationBps": "2108"
+          },
+          {
+            "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "symbol": "SOL",
+            "baseDecimals": 9,
+            "bps": "0",
+            "known": true,
+            "basePrice": "92690516937304000000",
+            "scenarioPrice": "92690516937304000000",
+            "baseline": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "scenario": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "concentrationBps": "2597"
+          },
+          {
+            "pool": "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "symbol": "XLM",
+            "baseDecimals": 7,
+            "bps": "0",
+            "known": true,
+            "basePrice": "162583817598000000",
+            "scenarioPrice": "162583817598000000",
+            "baseline": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "scenario": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "concentrationBps": "2628"
+          },
+          {
+            "pool": "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "symbol": "TAO",
+            "baseDecimals": 9,
+            "bps": "0",
+            "known": true,
+            "basePrice": "227465487557207500000",
+            "scenarioPrice": "227465487557207500000",
+            "baseline": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "scenario": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "concentrationBps": "24"
+          },
+          {
+            "pool": "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "symbol": "WLD",
+            "baseDecimals": 18,
+            "bps": "0",
+            "known": true,
+            "basePrice": "382744046883000000",
+            "scenarioPrice": "382744046883000000",
+            "baseline": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "scenario": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "concentrationBps": "412"
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278D992F72Ff31c7a619D",
+            "symbol": "ADA",
+            "baseDecimals": 6,
+            "bps": "0",
+            "known": true,
+            "basePrice": "189723142088500000",
+            "scenarioPrice": "189723142088500000",
+            "baseline": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "scenario": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "concentrationBps": "2228"
+          }
+        ],
+        "coverageComplete": true,
+        "reconciled": true,
+        "difference": {
+          "equity": "0",
+          "initialMargin": "0",
+          "maintenanceMargin": "0",
+          "closeOutMargin": "0"
+        },
+        "ready": true,
+        "baseline": {
+          "equity": "579755401691134858718",
+          "initialMargin": "7470970379406646750",
+          "maintenanceMargin": "3735485189703323375",
+          "closeOutMargin": "1866537618131476736",
+          "grossNotional": "92784354596840747500",
+          "netNotional": "4429240123510332500",
+          "maintenanceHeadroom": "576019916501431535343",
+          "initialHeadroom": "572284431311728211968",
+          "grossLeverageBps": "1600"
+        },
+        "scenario": {
+          "equity": "579755401691134858718",
+          "initialMargin": "7470970379406646750",
+          "maintenanceMargin": "3735485189703323375",
+          "closeOutMargin": "1866537618131476736",
+          "grossNotional": "92784354596840747500",
+          "netNotional": "4429240123510332500",
+          "maintenanceHeadroom": "576019916501431535343",
+          "initialHeadroom": "572284431311728211968",
+          "grossLeverageBps": "1600"
+        },
+        "orderCount": 0,
+        "orderCoverageComplete": true,
+        "assumptions": [
+          "Snapshot positions, collateral, funding indices and margin rates are frozen.",
+          "Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.",
+          "PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.",
+          "Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.",
+          "Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.",
+          "Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee."
+        ]
+      }
+    },
+    "scenario-2000": {
+      "status": "PASS",
+      "value": {
+        "schema": "pei.risk-scenario.v1",
+        "chainId": 50383,
+        "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+        "sdkVersion": "0.32.1",
+        "mode": "FROZEN_SNAPSHOT_HYPOTHETICAL_NO_TRANSACTIONS",
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41194437",
+        "observedAt": 1793773288721,
+        "decimals": 18,
+        "symbol": "USDso",
+        "collateral": "583643632399799608324",
+        "uniformBps": "-2000",
+        "rows": [
+          {
+            "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "symbol": "SUI",
+            "baseDecimals": 9,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "889205414064000000",
+            "scenarioPrice": "711364331251200000",
+            "baseline": {
+              "size": "-22000000000",
+              "notional": "19562519109408000000",
+              "unrealizedPnl": "6769280890592000000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "6971517485621899798",
+              "initialMarginRequirement": "1956251910940800000",
+              "maintenanceMarginRequirement": "978125955470400000",
+              "closeOutMarginRequirement": "489062977735200000",
+              "returnOnMarginBps": "35637"
+            },
+            "scenario": {
+              "size": "-22000000000",
+              "notional": "15650015287526400000",
+              "unrealizedPnl": "10681784712473600000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "10884021307503499798",
+              "initialMarginRequirement": "1565001528752640000",
+              "maintenanceMarginRequirement": "782500764376320000",
+              "closeOutMarginRequirement": "391250382188160000",
+              "returnOnMarginBps": "69546"
+            },
+            "concentrationBps": "2108"
+          },
+          {
+            "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "symbol": "SOL",
+            "baseDecimals": 9,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "92690516937304000000",
+            "scenarioPrice": "74152413549843200000",
+            "baseline": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "scenario": {
+              "size": "260000000",
+              "notional": "19279627522959232000",
+              "unrealizedPnl": "-11977572477040768000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-12581045784920456551",
+              "initialMarginRequirement": "481990688073980800",
+              "maintenanceMarginRequirement": "240995344036990400",
+              "closeOutMarginRequirement": "119533690642347239",
+              "returnOnMarginBps": "-261023"
+            },
+            "concentrationBps": "2597"
+          },
+          {
+            "pool": "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "symbol": "XLM",
+            "baseDecimals": 7,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "162583817598000000",
+            "scenarioPrice": "130067054078400000",
+            "baseline": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "scenario": {
+              "size": "-1500000000",
+              "notional": "19510058111760000000",
+              "unrealizedPnl": "12934941888240000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "13168611782496087656",
+              "initialMarginRequirement": "1951005811176000000",
+              "maintenanceMarginRequirement": "975502905588000000",
+              "closeOutMarginRequirement": "487751452794000000",
+              "returnOnMarginBps": "67496"
+            },
+            "concentrationBps": "2628"
+          },
+          {
+            "pool": "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "symbol": "TAO",
+            "baseDecimals": 9,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "227465487557207500000",
+            "scenarioPrice": "181972390045766000000",
+            "baseline": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "scenario": {
+              "size": "-1000000",
+              "notional": "181972390045766000",
+              "unrealizedPnl": "122721609954234000",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "124983061313352035",
+              "initialMarginRequirement": "18197239004576600",
+              "maintenanceMarginRequirement": "9098619502288300",
+              "closeOutMarginRequirement": "4549309751144150",
+              "returnOnMarginBps": "68682"
+            },
+            "concentrationBps": "24"
+          },
+          {
+            "pool": "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "symbol": "WLD",
+            "baseDecimals": 18,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "382744046883000000",
+            "scenarioPrice": "306195237506400000",
+            "baseline": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "scenario": {
+              "size": "10000000000000000000",
+              "notional": "3061952375064000000",
+              "unrealizedPnl": "-2578149665752326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-2623435667728318200",
+              "initialMarginRequirement": "306195237506400000",
+              "maintenanceMarginRequirement": "153097618753200000",
+              "closeOutMarginRequirement": "76548809376600000",
+              "returnOnMarginBps": "-85679"
+            },
+            "concentrationBps": "412"
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278D992F72Ff31c7a619D",
+            "symbol": "ADA",
+            "baseDecimals": 6,
+            "bps": "-2000",
+            "known": true,
+            "basePrice": "189723142088500000",
+            "scenarioPrice": "151778513670800000",
+            "baseline": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "scenario": {
+              "size": "109000000",
+              "notional": "16543857990117200000",
+              "unrealizedPnl": "-13540142009882800000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-13747213432030980844",
+              "initialMarginRequirement": "1654385799011720000",
+              "maintenanceMarginRequirement": "827192899505860000",
+              "closeOutMarginRequirement": "413596449752930000",
+              "returnOnMarginBps": "-83096"
+            },
+            "concentrationBps": "2228"
+          }
+        ],
+        "coverageComplete": true,
+        "reconciled": true,
+        "difference": {
+          "equity": "0",
+          "initialMargin": "0",
+          "maintenanceMargin": "0",
+          "closeOutMargin": "0"
+        },
+        "ready": true,
+        "baseline": {
+          "equity": "579755401691134858718",
+          "initialMargin": "7470970379406646750",
+          "maintenanceMargin": "3735485189703323375",
+          "closeOutMargin": "1866537618131476736",
+          "grossNotional": "92784354596840747500",
+          "netNotional": "4429240123510332500",
+          "maintenanceHeadroom": "576019916501431535343",
+          "initialHeadroom": "572284431311728211968",
+          "grossLeverageBps": "1600"
+        },
+        "scenario": {
+          "equity": "578869553666432792218",
+          "initialMargin": "5976776303525317400",
+          "maintenanceMargin": "2988388151762658700",
+          "closeOutMargin": "1493230094505181389",
+          "grossNotional": "74227483677472598000",
+          "netNotional": "3543392098808266000",
+          "maintenanceHeadroom": "575881165514670133518",
+          "initialHeadroom": "572892777362907474818",
+          "grossLeverageBps": "1282"
+        },
+        "orderCount": 0,
+        "orderCoverageComplete": true,
+        "assumptions": [
+          "Snapshot positions, collateral, funding indices and margin rates are frozen.",
+          "Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.",
+          "PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.",
+          "Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.",
+          "Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.",
+          "Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee."
+        ]
+      }
+    },
+    "scenario2000": {
+      "status": "PASS",
+      "value": {
+        "schema": "pei.risk-scenario.v1",
+        "chainId": 50383,
+        "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+        "sdkVersion": "0.32.1",
+        "mode": "FROZEN_SNAPSHOT_HYPOTHETICAL_NO_TRANSACTIONS",
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41194437",
+        "observedAt": 1793773288721,
+        "decimals": 18,
+        "symbol": "USDso",
+        "collateral": "583643632399799608324",
+        "uniformBps": "2000",
+        "rows": [
+          {
+            "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "symbol": "SUI",
+            "baseDecimals": 9,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "889205414064000000",
+            "scenarioPrice": "1067046496876800000",
+            "baseline": {
+              "size": "-22000000000",
+              "notional": "19562519109408000000",
+              "unrealizedPnl": "6769280890592000000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "6971517485621899798",
+              "initialMarginRequirement": "1956251910940800000",
+              "maintenanceMarginRequirement": "978125955470400000",
+              "closeOutMarginRequirement": "489062977735200000",
+              "returnOnMarginBps": "35637"
+            },
+            "scenario": {
+              "size": "-22000000000",
+              "notional": "23475022931289600000",
+              "unrealizedPnl": "2856777068710400000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "3059013663740299798",
+              "initialMarginRequirement": "2347502293128960000",
+              "maintenanceMarginRequirement": "1173751146564480000",
+              "closeOutMarginRequirement": "586875573282240000",
+              "returnOnMarginBps": "13030"
+            },
+            "concentrationBps": "2108"
+          },
+          {
+            "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "symbol": "SOL",
+            "baseDecimals": 9,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "92690516937304000000",
+            "scenarioPrice": "111228620324764800000",
+            "baseline": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "scenario": {
+              "size": "260000000",
+              "notional": "28919441284438848000",
+              "unrealizedPnl": "-2337758715561152000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-2941232023440840551",
+              "initialMarginRequirement": "722986032110971200",
+              "maintenanceMarginRequirement": "361493016055485600",
+              "closeOutMarginRequirement": "179300535963520858",
+              "returnOnMarginBps": "-40682"
+            },
+            "concentrationBps": "2597"
+          },
+          {
+            "pool": "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "symbol": "XLM",
+            "baseDecimals": 7,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "162583817598000000",
+            "scenarioPrice": "195100581117600000",
+            "baseline": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "scenario": {
+              "size": "-1500000000",
+              "notional": "29265087167640000000",
+              "unrealizedPnl": "3179912832360000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "3413582726616087656",
+              "initialMarginRequirement": "2926508716764000000",
+              "maintenanceMarginRequirement": "1463254358382000000",
+              "closeOutMarginRequirement": "731627179191000000",
+              "returnOnMarginBps": "11664"
+            },
+            "concentrationBps": "2628"
+          },
+          {
+            "pool": "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "symbol": "TAO",
+            "baseDecimals": 9,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "227465487557207500000",
+            "scenarioPrice": "272958585068649000000",
+            "baseline": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "scenario": {
+              "size": "-1000000",
+              "notional": "272958585068649000",
+              "unrealizedPnl": "31735414931351000",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "33996866290469035",
+              "initialMarginRequirement": "27295858506864900",
+              "maintenanceMarginRequirement": "13647929253432450",
+              "closeOutMarginRequirement": "6823964626716225",
+              "returnOnMarginBps": "12454"
+            },
+            "concentrationBps": "24"
+          },
+          {
+            "pool": "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "symbol": "WLD",
+            "baseDecimals": 18,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "382744046883000000",
+            "scenarioPrice": "459292856259600000",
+            "baseline": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "scenario": {
+              "size": "10000000000000000000",
+              "notional": "4592928562596000000",
+              "unrealizedPnl": "-1047173478220326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1092459480196318200",
+              "initialMarginRequirement": "459292856259600000",
+              "maintenanceMarginRequirement": "229646428129800000",
+              "closeOutMarginRequirement": "114823214064900000",
+              "returnOnMarginBps": "-23786"
+            },
+            "concentrationBps": "412"
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278D992F72Ff31c7a619D",
+            "symbol": "ADA",
+            "baseDecimals": 6,
+            "bps": "2000",
+            "known": true,
+            "basePrice": "189723142088500000",
+            "scenarioPrice": "227667770506200000",
+            "baseline": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "scenario": {
+              "size": "109000000",
+              "notional": "24815786985175800000",
+              "unrealizedPnl": "-5268213014824200000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-5475284436972380844",
+              "initialMarginRequirement": "2481578698517580000",
+              "maintenanceMarginRequirement": "1240789349258790000",
+              "closeOutMarginRequirement": "620394674629395000",
+              "returnOnMarginBps": "-22064"
+            },
+            "concentrationBps": "2228"
+          }
+        ],
+        "coverageComplete": true,
+        "reconciled": true,
+        "difference": {
+          "equity": "0",
+          "initialMargin": "0",
+          "maintenanceMargin": "0",
+          "closeOutMargin": "0"
+        },
+        "ready": true,
+        "baseline": {
+          "equity": "579755401691134858718",
+          "initialMargin": "7470970379406646750",
+          "maintenanceMargin": "3735485189703323375",
+          "closeOutMargin": "1866537618131476736",
+          "grossNotional": "92784354596840747500",
+          "netNotional": "4429240123510332500",
+          "maintenanceHeadroom": "576019916501431535343",
+          "initialHeadroom": "572284431311728211968",
+          "grossLeverageBps": "1600"
+        },
+        "scenario": {
+          "equity": "580641249715836925218",
+          "initialMargin": "8965164455287976100",
+          "maintenanceMargin": "4482582227643988050",
+          "closeOutMargin": "2239845141757772083",
+          "grossNotional": "111341225516208897000",
+          "netNotional": "5315088148212399000",
+          "maintenanceHeadroom": "576158667488192937168",
+          "initialHeadroom": "571676085260548949118",
+          "grossLeverageBps": "1917"
+        },
+        "orderCount": 0,
+        "orderCoverageComplete": true,
+        "assumptions": [
+          "Snapshot positions, collateral, funding indices and margin rates are frozen.",
+          "Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.",
+          "PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.",
+          "Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.",
+          "Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.",
+          "Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee."
+        ]
+      }
+    },
+    "customMarketShock": {
+      "status": "PASS",
+      "value": {
+        "schema": "pei.risk-scenario.v1",
+        "chainId": 50383,
+        "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+        "sdkVersion": "0.32.1",
+        "mode": "FROZEN_SNAPSHOT_HYPOTHETICAL_NO_TRANSACTIONS",
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41194437",
+        "observedAt": 1793773288721,
+        "decimals": 18,
+        "symbol": "USDso",
+        "collateral": "583643632399799608324",
+        "uniformBps": "0",
+        "rows": [
+          {
+            "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+            "symbol": "SUI",
+            "baseDecimals": 9,
+            "bps": "-1000",
+            "known": true,
+            "basePrice": "889205414064000000",
+            "scenarioPrice": "800284872657600000",
+            "baseline": {
+              "size": "-22000000000",
+              "notional": "19562519109408000000",
+              "unrealizedPnl": "6769280890592000000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "6971517485621899798",
+              "initialMarginRequirement": "1956251910940800000",
+              "maintenanceMarginRequirement": "978125955470400000",
+              "closeOutMarginRequirement": "489062977735200000",
+              "returnOnMarginBps": "35637"
+            },
+            "scenario": {
+              "size": "-22000000000",
+              "notional": "17606267198467200000",
+              "unrealizedPnl": "8725532801532800000",
+              "accruedFunding": "-202236595029899798",
+              "equityContribution": "8927769396562699798",
+              "initialMarginRequirement": "1760626719846720000",
+              "maintenanceMarginRequirement": "880313359923360000",
+              "closeOutMarginRequirement": "440156679961680000",
+              "returnOnMarginBps": "50707"
+            },
+            "concentrationBps": "2108"
+          },
+          {
+            "pool": "0xB483ec1fb34996638677c20ab087b16F1896FA53",
+            "symbol": "SOL",
+            "baseDecimals": 9,
+            "bps": "0",
+            "known": true,
+            "basePrice": "92690516937304000000",
+            "scenarioPrice": "92690516937304000000",
+            "baseline": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "scenario": {
+              "size": "260000000",
+              "notional": "24099534403699040000",
+              "unrealizedPnl": "-7157665596300960000",
+              "accruedFunding": "603473307879688551",
+              "equityContribution": "-7761138904180648551",
+              "initialMarginRequirement": "602488360092476000",
+              "maintenanceMarginRequirement": "301244180046238000",
+              "closeOutMarginRequirement": "149417113302934048",
+              "returnOnMarginBps": "-128819"
+            },
+            "concentrationBps": "2597"
+          },
+          {
+            "pool": "0x74b05B9B8c8F180b53b7891018F3B254B3E658C9",
+            "symbol": "XLM",
+            "baseDecimals": 7,
+            "bps": "0",
+            "known": true,
+            "basePrice": "162583817598000000",
+            "scenarioPrice": "162583817598000000",
+            "baseline": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "scenario": {
+              "size": "-1500000000",
+              "notional": "24387572639700000000",
+              "unrealizedPnl": "8057427360300000000",
+              "accruedFunding": "-233669894256087656",
+              "equityContribution": "8291097254556087656",
+              "initialMarginRequirement": "2438757263970000000",
+              "maintenanceMarginRequirement": "1219378631985000000",
+              "closeOutMarginRequirement": "609689315992500000",
+              "returnOnMarginBps": "33997"
+            },
+            "concentrationBps": "2628"
+          },
+          {
+            "pool": "0xD9b6A347A3Ae9FD6BA21179D3343F2c8A922F697",
+            "symbol": "TAO",
+            "baseDecimals": 9,
+            "bps": "0",
+            "known": true,
+            "basePrice": "227465487557207500000",
+            "scenarioPrice": "227465487557207500000",
+            "baseline": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "scenario": {
+              "size": "-1000000",
+              "notional": "227465487557207500",
+              "unrealizedPnl": "77228512442792500",
+              "accruedFunding": "-2261451359118035",
+              "equityContribution": "79489963801910535",
+              "initialMarginRequirement": "22746548755720750",
+              "maintenanceMarginRequirement": "11373274377860375",
+              "closeOutMarginRequirement": "5686637188930188",
+              "returnOnMarginBps": "34945"
+            },
+            "concentrationBps": "24"
+          },
+          {
+            "pool": "0x0F464d57c1FD839E4d87A408BBcCDAb8f77E6394",
+            "symbol": "WLD",
+            "baseDecimals": 18,
+            "bps": "0",
+            "known": true,
+            "basePrice": "382744046883000000",
+            "scenarioPrice": "382744046883000000",
+            "baseline": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "scenario": {
+              "size": "10000000000000000000",
+              "notional": "3827440468830000000",
+              "unrealizedPnl": "-1812661571986326520",
+              "accruedFunding": "45286001975991680",
+              "equityContribution": "-1857947573962318200",
+              "initialMarginRequirement": "382744046883000000",
+              "maintenanceMarginRequirement": "191372023441500000",
+              "closeOutMarginRequirement": "95686011720750000",
+              "returnOnMarginBps": "-48543"
+            },
+            "concentrationBps": "412"
+          },
+          {
+            "pool": "0x34fa62909f77699a7a6278D992F72Ff31c7a619D",
+            "symbol": "ADA",
+            "baseDecimals": 6,
+            "bps": "0",
+            "known": true,
+            "basePrice": "189723142088500000",
+            "scenarioPrice": "189723142088500000",
+            "baseline": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "scenario": {
+              "size": "109000000",
+              "notional": "20679822487646500000",
+              "unrealizedPnl": "-9404177512353500000",
+              "accruedFunding": "207071422148180844",
+              "equityContribution": "-9611248934501680844",
+              "initialMarginRequirement": "2067982248764650000",
+              "maintenanceMarginRequirement": "1033991124382325000",
+              "closeOutMarginRequirement": "516995562191162500",
+              "returnOnMarginBps": "-46477"
+            },
+            "concentrationBps": "2228"
+          }
+        ],
+        "coverageComplete": true,
+        "reconciled": true,
+        "difference": {
+          "equity": "0",
+          "initialMargin": "0",
+          "maintenanceMargin": "0",
+          "closeOutMargin": "0"
+        },
+        "ready": true,
+        "baseline": {
+          "equity": "579755401691134858718",
+          "initialMargin": "7470970379406646750",
+          "maintenanceMargin": "3735485189703323375",
+          "closeOutMargin": "1866537618131476736",
+          "grossNotional": "92784354596840747500",
+          "netNotional": "4429240123510332500",
+          "maintenanceHeadroom": "576019916501431535343",
+          "initialHeadroom": "572284431311728211968",
+          "grossLeverageBps": "1600"
+        },
+        "scenario": {
+          "equity": "581711653602075658718",
+          "initialMargin": "7275345188312566750",
+          "maintenanceMargin": "3637672594156283375",
+          "closeOutMargin": "1817631320357956736",
+          "grossNotional": "90828102685899947500",
+          "netNotional": "6385492034451132500",
+          "maintenanceHeadroom": "578073981007919375343",
+          "initialHeadroom": "574436308413763091968",
+          "grossLeverageBps": "1561"
+        },
+        "orderCount": 0,
+        "orderCoverageComplete": true,
+        "assumptions": [
+          "Snapshot positions, collateral, funding indices and margin rates are frozen.",
+          "Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.",
+          "PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.",
+          "Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.",
+          "Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.",
+          "Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee."
+        ]
+      }
+    },
+    "boundedIndexerWatermark": {
+      "status": "PASS",
+      "value": {
+        "state": "caught-up",
+        "processed": 41194467,
+        "target": "41194437",
+        "polls": 1,
+        "order": null,
+        "observedAt": 1793773291613
+      }
+    }
+  }
+}

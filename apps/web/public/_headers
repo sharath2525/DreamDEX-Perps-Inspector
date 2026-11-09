@@ -1,0 +1,5 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.hideki2.infra.testnet.somnia.network wss://api.hideki2.infra.testnet.somnia.network https://hideki-dev.smk.somnia.host https://indexer.hyperindex.xyz/ae9785b/v1/graphql; object-src 'none'; base-uri 'self'; form-action 'self'

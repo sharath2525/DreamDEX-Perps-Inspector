@@ -1,0 +1,89 @@
+{
+  "accessedAt": "2026-11-02T19:06:00.164Z",
+  "mode": "READ_ONLY_NO_SIGNER",
+  "results": {
+    "feed": {
+      "status": "PASS",
+      "result": {
+        "markPriceOk": true,
+        "markPrice": "91828735966563500000",
+        "openInterest": "47667370000000",
+        "indexUpdatedAt": "1793646361"
+      }
+    },
+    "maxSize": {
+      "status": "PASS",
+      "result": {
+        "priceable": true,
+        "asOfBlock": "39928601",
+        "maxQuantity": "0",
+        "unalignedMaxQuantity": "0",
+        "increasingQuantity": "0",
+        "reducingQuantity": "0",
+        "lockAmount": "0",
+        "topUpRequired": "0",
+        "wallet": null,
+        "fundingPayer": null,
+        "mainWalletCapacity": null,
+        "ownWalletPull": "0",
+        "mainWalletPull": "0",
+        "mainFundingBlocked": false,
+        "placeable": false,
+        "limitedBy": "collateral",
+        "lotSize": "10000000",
+        "minQuantity": "100000000",
+        "maxPositionSize": "4765440000000",
+        "positionSize": "0",
+        "markPrice": "91823735966563500000",
+        "effectiveImfBps": "500"
+      }
+    },
+    "marginPreview": {
+      "status": "PASS",
+      "result": {
+        "priceable": true,
+        "asOfBlock": "39928606",
+        "effectiveImfBps": "500",
+        "markPrice": "91823735966563500000",
+        "unlockedCollateral": "0",
+        "equity": "0",
+        "imRequirement": "0",
+        "wallet": null,
+        "fundingPayer": null,
+        "mainWalletCapacity": null,
+        "increasingQuantity": "100000000",
+        "reducingQuantity": "0",
+        "lockAmount": "504926403343650000",
+        "initialMarginPortion": "461300000000000000",
+        "adverseGapPortion": "43626403343650000",
+        "leverageSurcharge": "0",
+        "feeHeadroom": "0",
+        "topUpRequired": "0",
+        "walletCoversTopUp": true,
+        "ownWalletPull": "0",
+        "mainWalletPull": "0",
+        "mainFundingBlocked": false,
+        "hasCollateralForLock": false,
+        "meetsInitialMargin": false,
+        "voucherBlocked": false,
+        "restrictedBlocked": false,
+        "isolationBlocked": false,
+        "sufficient": false
+      }
+    },
+    "sync": {
+      "status": "PASS",
+      "result": {
+        "chainId": 50383,
+        "latestProcessedBlock": 39916455,
+        "blockHeight": 39916720,
+        "numEventsProcessed": 632058240
+      }
+    },
+    "stream": {
+      "status": "ERROR",
+      "name": "Error",
+      "message": "Bounded research timeout 25s"
+    }
+  }
+}

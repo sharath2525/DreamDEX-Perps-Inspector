@@ -1,0 +1,17 @@
+{
+  "reviewDateIST": "2026-11-03",
+  "package": "@somnia-chain/markets-sdk",
+  "version": "0.32.1",
+  "archiveIntegrity": "sha512-RfshQP8X6m/wrE6TocmiOPajbw/Vstmkvn+AP/ztK19QgcrPn1lR7A4Pp8xVm6MuOXOpBwTBrFO0W34neQF0Og==",
+  "integrityMatch": true,
+  "files": {
+    "dist/somniaMarketsClient.d.ts": "5254c766d22d20a9066623b319b2dcfc77f4d0278015f2b9396b05128037426b",
+    "dist/trade.d.ts": "8d592eea1604f912de6794beb614439324eef1a70d65201d87e4f53d209dceb0",
+    "src/orders.ts": "a1fec70ebee71a4cc574a7f6c2c0eb6bf290054723f2c9b0d58b5cfe9a16e2c2",
+    "src/perp/margin.ts": "46c7289705c534a2da8b969a82211d6792026b0b2a2d08cd8bf52a5d560273b2",
+    "src/perp/state.ts": "9cc6ce4ccd2e154bbb26404f7491236b3e75b595e48f7b11f5b42e09aa8421ae",
+    "src/readsAbi.ts": "c48419b484e5ddd6a412f47362507f16246242620d07229811885e3bd1eae827",
+    "src/tradeAbi.ts": "7948d58ba0ce6a7c6fb62d608a36aba8e8c750a6188265a3601df3f240f22f33",
+    "src/chains/definitions/hidekiTestnet.ts": "27ff1387e7f31840ec4e0c68c606977f4d72419608c710b54fa84c21e201004c"
+  }
+}

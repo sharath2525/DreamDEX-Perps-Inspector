@@ -1,0 +1,51 @@
+{
+  "observedAt": "2026-11-07T14:40:44.577Z",
+  "mode": "PUBLIC_CHAIN_INSPECTION_NO_SIGNER",
+  "origin": "UNKNOWN_FRONTEND_NOT_PEI_BUILD_PROOF",
+  "input": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+  "historyCoverage": {
+    "rowsReturned": 4,
+    "head": "44084934",
+    "processed": 44084944,
+    "limit": "First page only; inspect at most three distinct placement transactions."
+  },
+  "inspections": [
+    {
+      "schema": "pei.execution-report.v1",
+      "chainId": 50383,
+      "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+      "sdkVersion": "0.32.1",
+      "hash": "0x3f51275cc4f4c55a0e8086e5f52da74d75561a000cab280fc611ea6f109be91d",
+      "source": "https://api.hideki2.infra.testnet.somnia.network",
+      "explorer": "https://explorer.testnet.somnia.network/tokyo/tx/0x3f51275cc4f4c55a0e8086e5f52da74d75561a000cab280fc611ea6f109be91d",
+      "observedAt": 1794062446714,
+      "state": "unsupported",
+      "explanation": "Unsupported calldata. Single direct/delegated place, cancel and reduce calls are supported; batches, router calls and non-trading operations are not decoded here."
+    },
+    {
+      "schema": "pei.execution-report.v1",
+      "chainId": 50383,
+      "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+      "sdkVersion": "0.32.1",
+      "hash": "0x309d3cb941c2ca142f5b0c2d2cfb4c72a1e57647ba8e4bc9d3e18100409a16a3",
+      "source": "https://api.hideki2.infra.testnet.somnia.network",
+      "explorer": "https://explorer.testnet.somnia.network/tokyo/tx/0x309d3cb941c2ca142f5b0c2d2cfb4c72a1e57647ba8e4bc9d3e18100409a16a3",
+      "observedAt": 1794062447201,
+      "state": "unsupported",
+      "explanation": "Unsupported calldata. Single direct/delegated place, cancel and reduce calls are supported; batches, router calls and non-trading operations are not decoded here."
+    },
+    {
+      "schema": "pei.execution-report.v1",
+      "chainId": 50383,
+      "genesis": "0x555de6145260a388241bea0f9328d57335d330d5a0fbb329de1a4fd1c7f2eb25",
+      "sdkVersion": "0.32.1",
+      "hash": "0x69a5292de74a7d0a2782b8034b54ef66561ce56f3d76b4120b5a59e5d8bd9d16",
+      "source": "https://api.hideki2.infra.testnet.somnia.network",
+      "explorer": "https://explorer.testnet.somnia.network/tokyo/tx/0x69a5292de74a7d0a2782b8034b54ef66561ce56f3d76b4120b5a59e5d8bd9d16",
+      "observedAt": 1794062447581,
+      "state": "unsupported",
+      "explanation": "Unsupported calldata. Single direct/delegated place, cancel and reduce calls are supported; batches, router calls and non-trading operations are not decoded here."
+    }
+  ],
+  "status": "INCONCLUSIVE"
+}

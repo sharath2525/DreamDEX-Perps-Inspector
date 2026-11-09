@@ -1,0 +1,8 @@
+{
+  "timestamp": "2026-11-09T06:29:09.413Z",
+  "status": "PASS",
+  "sourceFilesChecked": 84,
+  "sdkVersion": "0.32.1",
+  "findings": [],
+  "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+}

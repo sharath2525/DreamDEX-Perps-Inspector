@@ -1,0 +1,28 @@
+{
+  "name": "perps-execution-inspector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.14.0 <23 || >=24", "npm": ">=10" },
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace @pei/web",
+    "build": "npm run typecheck && npm run build --workspace @pei/web",
+    "preview": "npm run preview --workspace @pei/web",
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.tools.json",
+    "lint": "eslint .",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run build && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@types/node": "22.20.5",
+    "eslint": "10.14.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.14.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1"
+  }
+}

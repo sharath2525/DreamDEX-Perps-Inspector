@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-11-04T17:39:45.385Z",
+  "mode": "PUBLIC_READ_ONLY_NO_SIGNER",
+  "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+  "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+  "checks": {
+    "marginAccount": {
+      "status": "PASS",
+      "value": {
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "blockNumber": "41601309",
+        "observedAt": 1793813986416,
+        "decimals": 18,
+        "unlocked": "583643632399799608324",
+        "locked": "0",
+        "withdrawable": "583643632399799608324",
+        "floor": "0",
+        "allowance": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "balance": "23546264000000000000",
+        "granter": "0x2ACD9EFdA721450906bfE1bef3edE269636E42C4",
+        "fundingPayer": "0x0000000000000000000000000000000000000000",
+        "mainPrincipal": "0"
+      }
+    },
+    "stopContext": {
+      "status": "PASS",
+      "value": {
+        "registry": "0xFDCFb2f985049Cad3aC27472b6Ae80C7a53EDe89",
+        "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+        "payment": "150000000000000000",
+        "refund": "0",
+        "permission": {
+          "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+          "operator": "0xFDCFb2f985049Cad3aC27472b6Ae80C7a53EDe89",
+          "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+          "registry": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a",
+          "blockNumber": "41601338",
+          "observedAt": 1793813989445,
+          "place": false,
+          "cancel": false,
+          "reduce": false
+        },
+        "position": "-22000000000",
+        "blockNumber": "41601327"
+      }
+    },
+    "indexedStops": {
+      "status": "PASS",
+      "value": {
+        "registry": "0xFDCFb2f985049Cad3aC27472b6Ae80C7a53EDe89",
+        "payment": "150000000000000000",
+        "refund": "0",
+        "blockNumber": "41601351",
+        "observedAt": 1793813992928,
+        "rows": [],
+        "coverage": "Newest 50 indexed stops; listing may omit older or unindexed stops. Known IDs can be checked directly."
+      }
+    },
+    "operatorPermissions": {
+      "status": "PASS",
+      "value": {
+        "owner": "0xb853b97e1F8fa2c50268FDB28E050f6DcdDE233C",
+        "operator": "0x000000000000000000000000000000000000dEaD",
+        "pool": "0x1Be21287cfB865a7c462Ff3c4f275E70BcccefE4",
+        "registry": "0x6B2FbfeD328FF5F20C0BE7D3C3437613aFFE8D3a",
+        "blockNumber": "41601386",
+        "observedAt": 1793813994205,
+        "place": false,
+        "cancel": false,
+        "reduce": false
+      }
+    }
+  }
+}

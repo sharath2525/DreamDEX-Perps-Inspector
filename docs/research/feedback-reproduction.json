@@ -1,0 +1,71 @@
+{
+  "observedAt": "2026-11-07T14:37:08.554Z",
+  "mode": "OFFLINE_CONTROLLED_INPUTS_NO_NETWORK_NO_SIGNER",
+  "sdkVersion": "0.32.1",
+  "node": "v22.14.0",
+  "declarationSha256": "8d592eea1604f912de6794beb614439324eef1a70d65201d87e4f53d209dceb0",
+  "fundingDocumentation": {
+    "status": "STALE_COMMENT_CONFIRMED_IN_PINNED_PACKAGE",
+    "source": "dist/trade.d.ts: PlacePerpOrderParams",
+    "fundingCommentPresent": true,
+    "liveAutoPullTransactionTested": false
+  },
+  "delegatedSurface": {
+    "status": "FEATURE_REQUEST_NOT_PROTOCOL_BUG",
+    "perpMethods": [
+      "placePerpOrder",
+      "buildPlacePerpOrder",
+      "setPerpLeverage",
+      "proposePerpWalletLink",
+      "acceptPerpWalletLink",
+      "cancelPerpWalletLinkProposal",
+      "unlinkPerpWallet",
+      "repayPerpMainFunding",
+      "recallPerpMainFunding",
+      "claimPerpVoucher",
+      "placePerpStopOrder",
+      "linkPerpStopOrders",
+      "cancelPerpStopOrder",
+      "cancelPerpStopOrders",
+      "claimPerpStopSomi",
+      "buildPlacePerpStopOrder",
+      "buildCancelPerpStopOrder",
+      "buildCancelPerpStopOrders",
+      "buildAcceptPerpWalletLink",
+      "buildRepayPerpMainFunding",
+      "buildClaimPerpVoucher"
+    ],
+    "requestedNamesAbsent": [
+      "placePerpOrderFor",
+      "cancelPerpOrderFor",
+      "reducePerpOrderFor"
+    ],
+    "placementHasOwner": false,
+    "rawContractRouteExists": true
+  },
+  "genesisDiagnostics": {
+    "status": "KNOWN_DOCUMENTED_BEHAVIOR_WITH_RETAINED_CAUSE",
+    "observations": [
+      {
+        "label": "CONTROLLED transport refusal; no endpoint was contacted",
+        "outcome": "rejected",
+        "name": "RpcError",
+        "message": "@somnia-chain/markets-sdk: rpc getBlock failed: genesis check failed",
+        "cause": "Controlled WebSocket transport refused"
+      },
+      {
+        "label": "CONTROLLED retired block-1 hash",
+        "outcome": "rejected",
+        "name": "NotConfiguredError",
+        "message": "@somnia-chain/markets-sdk: chain reads on chain 50383 — needs an RPC on the current genesis of chain 50383 (this RPC serves the retired Hideki v1 genesis)",
+        "cause": null
+      },
+      {
+        "label": "CONTROLLED non-retired hash; not a live chain observation",
+        "outcome": "resolved"
+      }
+    ],
+    "conclusion": "Transport and retired-genesis failures have distinct error types/messages; the original transport cause is retained. Do not claim loss of cause or a new outage bug."
+  },
+  "limitations": "No transaction evidence, organizer acceptance, duplicate clearance, latest-version claim, or exploitability claim. Internal module import is for isolated reproduction only, not an application integration API."
+}
