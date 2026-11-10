@@ -1,0 +1,197 @@
+{
+  "mode": "PUBLIC_READ_ONLY",
+  "snapshot": {
+    "owner": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+    "blockNumber": "46346751",
+    "blockTimestamp": "1794288713",
+    "observedAt": 1794288714595,
+    "decimals": 18,
+    "symbol": "USDso",
+    "state": {
+      "unlockedCollateralBalance": "1179820217983566214658",
+      "lockedCollateral": "0",
+      "activePerpPools": [
+        "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0"
+      ]
+    },
+    "health": {
+      "ok": true,
+      "value": [
+        "1037596648159367966114",
+        "385432094769671864537",
+        "192716047384835932269",
+        "95587159502878622406"
+      ]
+    },
+    "status": {
+      "ok": true,
+      "value": 0
+    },
+    "withdrawable": {
+      "ok": true,
+      "value": "179820217983566214658"
+    },
+    "floor": {
+      "ok": true,
+      "value": "1000000000000000000000"
+    },
+    "isolated": {
+      "ok": true,
+      "value": false
+    },
+    "nativeBalance": {
+      "ok": true,
+      "value": "13939821302000000000"
+    },
+    "tokenBalance": {
+      "ok": true,
+      "value": "0"
+    },
+    "code": {
+      "ok": true,
+      "value": "0x60806040525f5463a619486e5f3560e01c146030575f8091368280378136915af43d5f803e15602c573d5ff35b3d5ffd5b60601b606c5260206060f3fea264697066735822122052ebe5837e93aeeebe7c7bd4a52dd4a1efcfd6f36c88f74ed36ebe47b30b033d64736f6c63430008220033"
+    },
+    "voucher": {
+      "ok": true,
+      "value": {
+        "distributor": "0x2ACD9EFdA721450906bfE1bef3edE269636E42C4",
+        "claimed": true,
+        "expiresAt": "1795092207"
+      }
+    },
+    "positions": [
+      {
+        "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+        "position": {
+          "ok": true,
+          "value": {
+            "size": "20645000",
+            "avgEntryPrice": "75203868491160087188180",
+            "entryFundingIndex": "8123534596734611821592541749843142218750",
+            "lastUpdatedTimestampNs": "0"
+          }
+        },
+        "metadata": {
+          "ok": true,
+          "value": {
+            "baseDecimals": 8,
+            "baseSymbol": "BTC",
+            "tickSize": "100000000000000000",
+            "minQuantity": "13000",
+            "lotSize": "1000",
+            "initialMarginBps": "250",
+            "maintenanceMarginBps": "125",
+            "closeOutMarginBps": "62",
+            "maxOpenInterest": "49363090000",
+            "maxPositionSize": "10000000000",
+            "takerFeeBpsTimes1k": "0",
+            "makerFeeBpsTimes1k": "0",
+            "insuranceFundShareBps": "0"
+          }
+        },
+        "analytics": {
+          "ok": true,
+          "value": {
+            "markPrice": "74678051783903485500000",
+            "inputs": {
+              "size": "20645000",
+              "avgEntryPrice": "75203868491160087188180",
+              "entryFundingIndex": "8123534596734611821592541749843142218750",
+              "lastUpdatedTimestampNs": "0",
+              "markPrice": "74678051783903485500000",
+              "projectedCumulativeFunding": "8286618687851457692352628366374888531250",
+              "oneBase": "100000000",
+              "effectiveImfBps": "250",
+              "maintenanceMarginBps": "125",
+              "closeOutMarginBps": "62"
+            },
+            "metrics": {
+              "size": "20645000",
+              "notional": "15417283790786874581475",
+              "unrealizedPnl": "-108554859213125418524",
+              "accruedFunding": "33668710611072830019",
+              "equityContribution": "-142223569824198248543",
+              "initialMarginRequirement": "385432094769671864537",
+              "maintenanceMarginRequirement": "192716047384835932269",
+              "closeOutMarginRequirement": "95587159502878622406",
+              "returnOnMarginBps": "-3690"
+            }
+          }
+        }
+      }
+    ],
+    "orders": [],
+    "orderCount": 0,
+    "scannedPools": 22,
+    "failedOrderPools": [],
+    "warnings": [],
+    "positionCoverageComplete": true,
+    "analyticsComplete": true,
+    "orderCoverageComplete": true,
+    "indexedPositionCount": 1
+  },
+  "risk": {
+    "owner": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+    "blockNumber": "46346751",
+    "observedAt": 1794288714595,
+    "decimals": 18,
+    "symbol": "USDso",
+    "collateral": "1179820217983566214658",
+    "uniformBps": "0",
+    "rows": [
+      {
+        "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+        "symbol": "BTC",
+        "baseDecimals": 8,
+        "bps": "0",
+        "known": true,
+        "basePrice": "74678051783903485500000",
+        "scenarioPrice": "74678051783903485500000",
+        "baseline": {
+          "size": "20645000",
+          "notional": "15417283790786874581475",
+          "unrealizedPnl": "-108554859213125418524",
+          "accruedFunding": "33668710611072830019",
+          "equityContribution": "-142223569824198248543",
+          "initialMarginRequirement": "385432094769671864537",
+          "maintenanceMarginRequirement": "192716047384835932269",
+          "closeOutMarginRequirement": "95587159502878622406",
+          "returnOnMarginBps": "-3690"
+        },
+        "scenario": {
+          "size": "20645000",
+          "notional": "15417283790786874581475",
+          "unrealizedPnl": "-108554859213125418524",
+          "accruedFunding": "33668710611072830019",
+          "equityContribution": "-142223569824198248543",
+          "initialMarginRequirement": "385432094769671864537",
+          "maintenanceMarginRequirement": "192716047384835932269",
+          "closeOutMarginRequirement": "95587159502878622406",
+          "returnOnMarginBps": "-3690"
+        },
+        "concentrationBps": null
+      }
+    ],
+    "coverageComplete": true,
+    "reconciled": false,
+    "difference": {
+      "equity": "1",
+      "initialMargin": "0",
+      "maintenanceMargin": "0",
+      "closeOutMargin": "0"
+    },
+    "ready": false,
+    "baseline": null,
+    "scenario": null,
+    "orderCount": 0,
+    "orderCoverageComplete": true,
+    "assumptions": [
+      "Snapshot positions, collateral, funding indices and margin rates are frozen.",
+      "Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.",
+      "PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.",
+      "Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.",
+      "Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.",
+      "Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee."
+    ]
+  }
+}

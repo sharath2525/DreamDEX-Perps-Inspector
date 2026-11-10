@@ -16,7 +16,7 @@ export const TX_HASH = `0x${'cd'.repeat(32)}` as Hex;
 export const REPLACEMENT_HASH = `0x${'ef'.repeat(32)}` as Hex;
 export interface FixtureOptions { wrongChain?: boolean; wrongGenesis?: boolean; wrongSystem?: boolean; unpriceable?: boolean; failHealth?: boolean; offline?: boolean; emptyMargin?: boolean; revertSimulation?: boolean; receiptMode?: 'resting' | 'filled' | 'reverted' | 'no-events' | 'pending'; sent?: { from: string; to: string; data: Hex; value?: Hex }; cancelled?: boolean; wrongTransaction?: boolean; duplicateLogs?: boolean; healthOffset?: bigint; indexedBlock?: number; originalPending?: boolean; replacement?: 'repriced' | 'wallet-cancelled' | 'different-call'; wrongNonce?: boolean; originalMissing?: boolean; operations?: boolean; permission?: boolean; bankAllowance?: bigint; nativeBalance?: Hex; stopLive?: boolean; stopRefund?: bigint; pendingNonce?: number; transactionNonce?: number }
 interface RpcRequest { id: number; method: string; params: unknown[] }
-export interface FixtureOptions { transform?: (request: RpcRequest, value: unknown) => unknown }
+export interface FixtureOptions { transform?: (request: RpcRequest, value: unknown) => unknown; riskFractionalLoss?: boolean }
 export async function mockReads(page: Page, options: FixtureOptions = {}) {
   const calls: RpcRequest[] = [];
   const abi: Abi = [...bankAbi, ...factoryAbi, ...poolAbi, ...voucherAbi, ...erc20Abi, ...orderWriteAbi, ...operationsAbi, ...parseAbi([
@@ -115,7 +115,7 @@ export async function mockReads(page: Page, options: FixtureOptions = {}) {
               case 'getLastFundingUpdateTimestampNs': answer = BigInt(Date.now()) * 1000000n; break;
               case 'getBookLevels': answer = [{ price: 12000000n, quantity: 1500000000n }]; break;
               case 'getAccountState': answer = { unlockedCollateralBalance: accountA && !options.emptyMargin ? 100000000n : 0n, lockedCollateral: 0n, activePerpPools: accountA ? [POOL] : [] }; break;
-              case 'getAccountHealth': if (options.failHealth) throw new Error('Controlled health failure'); answer = accountA ? [103000000n + (options.healthOffset ?? 0n), 900000n, 450000n, 225000n] : [0n, 0n, 0n, 0n]; break;
+              case 'getAccountHealth': if (options.failHealth) throw new Error('Controlled health failure'); answer = accountA ? [(options.riskFractionalLoss ? 99999998n : 103000000n) + (options.healthOffset ?? 0n), 900000n, 450000n, 225000n] : [0n, 0n, 0n, 0n]; break;
               case 'getMarginStatus': answer = 0; break;
               case 'getWithdrawableCollateral': answer = accountA ? 99000000n : 0n; break;
               case 'getCreditFloor': answer = 0n; break;
@@ -123,7 +123,7 @@ export async function mockReads(page: Page, options: FixtureOptions = {}) {
               case 'isolated': answer = false; break;
               case 'balanceOf': answer = accountA ? 5000000n : 0n; break;
               case 'getOwnOpenOrders': answer = call.from?.toLowerCase() === ACCOUNT_A ? [7n] : []; break;
-              case 'getPosition': answer = { size: accountA ? 1500000000n : 0n, avgEntryPrice: 10000000n, entryFundingIndex: 0n, lastUpdatedTimestampNs: 0n }; break;
+              case 'getPosition': answer = { size: accountA ? 1500000000n : 0n, avgEntryPrice: options.riskFractionalLoss ? 12000001n : 10000000n, entryFundingIndex: 0n, lastUpdatedTimestampNs: 0n }; break;
               case 'tryGetHealthSnapshot': answer = [!options.unpriceable, { oneBase: 1000000000n, markPrice: 12000000n, projectedCumulativeFunding: 0n, effectiveIMFBps: 500n, maintenanceMarginBps: 250n, closeOutMarginBps: 125n }]; break;
               case 'getOrder': answer = { orderId: 7n, isBid: true, owner: ACCOUNT_A, userData: 0n, price: 11000000n, fullQuantity: 1000000000n, quantityRemaining: options.cancelled || options.receiptMode === 'filled' || options.receiptMode === 'no-events' ? 0n : 1000000000n, expireTimestampNs: 0n }; break;
               default: throw new Error(`Unmodelled read ${decoded.functionName}`);

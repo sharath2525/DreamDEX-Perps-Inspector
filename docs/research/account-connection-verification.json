@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-11-10T02:59:27.667Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "startTime": "2026-11-09T15:49:19.470Z",
+    "duration": 515892.418,
+    "expected": 135,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "deterministicTests": 132,
+  "liveReadTests": 3,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-10T02:58:54.065Z",
+    "status": "PASS",
+    "sourceFilesChecked": 85,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "94450449ad2fe4feff67adf28cb653cc4412521e60df6fb6074f4ef4d8fc6e06",
+  "finalWalletRecheck": {
+    "startTime": "2026-11-10T02:58:44.272Z",
+    "duration": 31516.492000000002,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "finalChange": "Market dropdown says Loading while its first read is pending",
+  "fixes": [
+    "wrong-network preference persistence",
+    "legacy default migration preserves explicit choices",
+    "late discovery cannot replace manual or inspection choices",
+    "automatic discovery cannot resume invalidated signing sessions",
+    "funded or unreadable signer not silently replaced"
+  ],
+  "ui": [
+    "owned, derived and linked discovery with current pool verification",
+    "automatic eligible single linked selection",
+    "account cards with observed margin and provenance",
+    "conditional trading permission instructions",
+    "responsive wallet and setup screens",
+    "step-by-step account testing guide"
+  ],
+  "browserData": "Additive selection-choice marker; existing public addresses, journals and notes retained",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "Linked discovery bounded and index-dependent",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

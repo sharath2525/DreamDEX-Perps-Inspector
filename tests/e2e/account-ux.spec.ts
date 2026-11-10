@@ -50,7 +50,9 @@ async function navigate(page: Page, label: string) { await page.getByRole('navig
 
 test('under the shipping CSP indexed candidates are deduplicated and selected deliberately', async ({ page }) => {
   await wallet(page, true);
-  await page.getByText('Set up or change account', { exact: true }).click();
+  await expect(page.locator('.account-choice-card')).toHaveCount(2);
+  const details = page.getByRole('region', { name: 'Shared account setup' }).locator('details').first();
+  if (await details.getAttribute('open') === null) await details.locator('summary').click();
   const candidate = page.getByRole('button', { name: `Use ${ACCOUNT_A}`, exact: true });
   await expect(candidate).toHaveCount(1);
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_B);
@@ -64,7 +66,7 @@ test('wallet dialog automatically displays discovered accounts without granting 
   const accounts = dialog.getByRole('region', { name: 'Discovered trading accounts' });
   const candidate = accounts.getByRole('button', { name: `${ACCOUNT_A} Use account`, exact: true });
   await expect(candidate).toBeVisible();
-  await expect(accounts.locator('.account-candidate-list button')).toHaveCount(2);
+  await expect(accounts.locator('.account-candidate-list .choose-account')).toHaveCount(2);
   await expect(accounts.getByRole('button', { name: /0x0000000000000000000000000000000000000000/ })).toHaveCount(0);
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_B);
   await candidate.click();
@@ -170,7 +172,7 @@ test('automatic risk stays frozen, account switch replaces it and mobile fits', 
 
 test('guided scenarios begin unrun and export only user-recorded results', async ({ page }) => {
   await page.route('https://**', route => route.abort()); await page.goto('/test-lab');
-  const tests = page.locator('.guided-tests'); await expect(tests.locator('details')).toHaveCount(12);
+  const tests = page.locator('.guided-tests'); await expect(tests.locator('details')).toHaveCount(24);
   await tests.getByText('U01 · Select the funded account', { exact: true }).click();
   await tests.getByLabel('Result for U01', { exact: true }).selectOption('BLOCKED');
   await tests.getByLabel('Observations for U01', { exact: true }).fill('No wallet extension in this test.');

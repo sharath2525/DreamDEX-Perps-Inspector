@@ -56,7 +56,7 @@ Date: 2026-11-05. No scenario is pre-marked PASS.
 7. Read the reconciliation message and BTC position row.
 8. Download the risk evidence using the available evidence download control.
 
-**Expected:** baseline and 0% scenario match. A complete valid baseline says **Baseline reconciled exactly with on-chain health**. If the message says incomplete/mismatched, report it rather than interpreting withheld totals as zero.
+**Expected:** baseline and 0% scenario match. An exact match says **Baseline reconciled exactly with on-chain health**; a narrowly bounded equity discrepancy says **Scenario estimate · minor baseline discrepancy** and exports its adjustment. If totals are withheld, report the mismatch rather than interpreting it as zero. See the current [24-case guide](USER_ACCEPTANCE_GUIDE.md).
 
 **Send:** reconciliation message, frozen block, selected owner, screenshot, and exported evidence.
 

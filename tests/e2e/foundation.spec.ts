@@ -95,6 +95,7 @@ test('mobile navigation traps focus, closes with Escape, and focuses selected co
 });
 
 test('layouts fit narrow viewports and produce review screenshots', async ({ page }, testInfo) => {
+  test.setTimeout(120000); // 28 route loads plus screenshots across four viewport sizes.
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: width === 1440 ? 1100 : 844 });
     for (const path of ['/', '/markets', '/settings', '/test-lab', '/executions', '/history', '/positions/manage']) {

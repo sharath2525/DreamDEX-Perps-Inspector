@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Wallet, X } from 'lucide-react';
-import { amount, PERPS_CONFIG, readPermissions, readSignerGas, sameAddress } from '@pei/perps-adapter';
+import { amount, OFFICIAL_LINKS, PERPS_CONFIG, readPermissions, readSignerGas, sameAddress } from '@pei/perps-adapter';
 import { useAccount } from '../app/account-context';
 import { useMarkets } from '../app/queries';
 import { CopyAddress } from './CopyAddress';
@@ -19,13 +19,14 @@ function WalletAccountDetails() {
     : account.viewOnly || !account.signingSession() ? 'Return to your trading account before preparing a new order.'
     : gas.error ? 'Gas could not be read. Retry before preparing an order.'
     : gas.data?.value === 0n ? 'The signing wallet needs testnet STT for gas. Its gas is separate from the trading account’s margin.'
-    : linked ? permission.error || markets.error ? 'Permission data is unavailable. Retry the check; no permission is inferred.' : permission.data ? permission.data.place ? 'Placement permission observed for this market. Trade still checks terms, margin and gas before every signature.' : 'Placement is not allowed for this market. Review Link a bot in the official dreamDEX app.' : 'Choose a market and wait for its permission check.'
+    : linked ? permission.isFetching ? 'Checking current trading permission…' : permission.error || markets.error ? 'Permission data is unavailable. Retry the check; no permission is inferred.' : permission.data ? permission.data.place ? 'Placement permission observed for this market. Trade still checks terms, margin and gas before every signature.' : 'Placement is not allowed for this market. Review Link a bot in the official dreamDEX app.' : 'Choose a market and wait for its permission check.'
     : 'Using the signing wallet itself. If your margin is in a dreamDEX app wallet, choose that account with Manage trading account.';
   return <>
     <dl className="wallet-identities"><dt>Signing wallet · pays gas</dt><dd>{account.actor}<CopyAddress address={account.actor!} label="signing wallet address" /></dd><dt>{account.viewOnly ? 'Viewing account · read-only' : 'Selected account · positions and margin'}</dt><dd>{account.owner ?? 'Choose a trading account'}{account.owner && <CopyAddress address={account.owner} label="trading account address" />}</dd><dt>Wallet network</dt><dd>{account.chainId === PERPS_CONFIG.chainId ? 'Somnia testnet · 50383' : `Wrong network · ${account.chainId ?? 'unknown'}`}</dd><dt>Signer gas on testnet</dt><dd>{gas.error ? 'Unavailable — no zero assumed' : gas.data ? `${amount(gas.data.value, 18)} STT · block ${gas.data.block}` : 'Reading gas…'}</dd></dl>
-    {linked && <label className="wallet-permission-market">Check permission for market<select value={pool ?? ''} onChange={event => setMarket(event.target.value)}>{!markets.data?.rows.length && <option value="">Markets unavailable</option>}{markets.data?.rows.map(row => <option key={row.pool} value={row.pool}>{row.metadata.ok ? row.metadata.value.baseSymbol : row.pool}</option>)}</select></label>}
-    {linked && !account.viewOnly && account.chainId === PERPS_CONFIG.chainId && permission.data && !permission.error && <p>Place {permission.data.place ? 'allowed' : 'not allowed'} · Cancel {permission.data.cancel ? 'allowed' : 'not allowed'} · Reduce {permission.data.reduce ? 'allowed' : 'not allowed'} at block {permission.data.blockNumber.toString()}. These permissions do not authorize withdrawals or owner stops.</p>}
+    {linked && <label className="wallet-permission-market">Check permission for market<select value={pool ?? ''} onChange={event => setMarket(event.target.value)}>{!markets.data?.rows.length && <option value="">{markets.isFetching ? 'Loading markets…' : 'Markets unavailable'}</option>}{markets.data?.rows.map(row => <option key={row.pool} value={row.pool}>{row.metadata.ok ? row.metadata.value.baseSymbol : row.pool}</option>)}</select></label>}
+    {linked && !account.viewOnly && account.chainId === PERPS_CONFIG.chainId && permission.data && !permission.error && !permission.isFetching && <p>Place {permission.data.place ? 'allowed' : 'not allowed'} · Cancel {permission.data.cancel ? 'allowed' : 'not allowed'} · Reduce {permission.data.reduce ? 'allowed' : 'not allowed'} at block {permission.data.blockNumber.toString()}. These permissions do not authorize withdrawals or owner stops.</p>}
     <p className="wallet-next-step" role="status">{next}</p>
+    {linked && !account.viewOnly && account.chainId === PERPS_CONFIG.chainId && !permission.isFetching && !permission.error && permission.data && !permission.data.place && <p><a href={OFFICIAL_LINKS.botLinking} target="_blank" rel="noreferrer">Grant trading permission in dreamDEX</a> using “Link a bot”. You do not need to build or run a bot.</p>}
     {(gas.error || permission.error || markets.error) && <button className="button secondary" onClick={() => { void gas.refetch(); if (linked) void markets.refetch(); if (linked && pool && !account.viewOnly && account.chainId === PERPS_CONFIG.chainId) void permission.refetch(); }}>Retry wallet checks</button>}
   </>;
 }

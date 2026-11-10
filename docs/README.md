@@ -4,6 +4,9 @@ Start with the root [README](../README.md). Numbered build handoffs describe ear
 
 ## Use and test
 
+- [Start here: all 24 scenarios, exact steps and report format](USER_ACCEPTANCE_GUIDE.md)
+- [What the features solve and how to demonstrate their value](PRODUCT_VALUE.md)
+- [Account connection, automatic discovery and numbered tests](ACCOUNT_CONNECTION.md)
 - [Guided execution, recovery and demo scenarios](GUIDED_EXECUTION.md)
 - [Cleanup review and acceptance checks](CLEANUP_REVIEW.md)
 - [Current step-by-step scenarios](PARTS2_3_TESTING_GUIDE.md)

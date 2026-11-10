@@ -10,6 +10,7 @@ export interface WalletChoice { id: string; name: string; provider: WalletProvid
 export interface AccountContextValue {
   owner: Address | null; actor: Address | null; chainId: number | null;
   tradingOwner: Address | null; viewOnly: boolean; identityVersion: number; storageWarning: string;
+  selectionSource: 'default' | 'manual' | 'restored' | 'automatic' | 'inspection';
   choices: WalletChoice[]; connecting: boolean; walletError: string;
   signingSession(): { provider: WalletProvider } | null;
   inspect(address: Address | null): void; connect(id: string): Promise<void>; disconnect(): void;

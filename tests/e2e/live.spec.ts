@@ -26,7 +26,7 @@ test('live testnet browser reads show markets and a public non-empty account', a
   await page.screenshot({ path: testInfo.outputPath('live-account-desktop.png') });
   await page.getByRole('navigation').getByRole('link', { name: 'Risk Lab', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Use latest snapshot & reset scenarios' })).toBeVisible({ timeout: 30000 });
-  await expect(page.getByText('Baseline reconciled exactly with on-chain health')).toBeVisible({ timeout: 30000 });
+  await expect(page.getByText(/Baseline reconciled exactly with on-chain health|Scenario estimate · minor baseline discrepancy/)).toBeVisible({ timeout: 30000 });
   await page.getByRole('button', { name: '-20%', exact: true }).click();
   await expect(page.getByText(/last valid calculation/)).toHaveCount(0);
   await page.locator('.live-metrics').scrollIntoViewIfNeeded();
@@ -37,6 +37,29 @@ test('live testnet browser reads show markets and a public non-empty account', a
   const fits = await page.evaluate(() => document.querySelector('main')!.scrollWidth <= document.querySelector('main')!.clientWidth);
   expect(fits).toBe(true);
   expect(errors).toEqual([]);
+});
+
+test('reported public account risk scenario stays usable without concealing reconciliation differences', async ({ page }, testInfo) => {
+  test.skip(process.env.PEI_LIVE_READS !== '1', 'Public read-only integration check.'); test.setTimeout(120000);
+  const evidence = JSON.parse(await readFile('docs/research/risk-sdk-reproduction.json', 'utf8')) as { account: string };
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  await page.goto('/positions/risk'); await page.getByLabel('Account to analyze').fill(evidence.account);
+  await page.getByRole('button', { name: 'Inspect risk account' }).click();
+  await expect(page.getByText(/Baseline reconciled exactly with on-chain health|Scenario estimate · minor baseline discrepancy/)).toBeVisible({ timeout: 45000 });
+  await page.getByRole('button', { name: '-10%', exact: true }).click();
+  await expect(page.getByText(/last valid calculation/)).toHaveCount(0);
+  const pending = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download JSON evidence' }).click();
+  const report = JSON.parse(await readFile((await (await pending).path())!, 'utf8'));
+  expect(report.ready).toBe(true); expect(report.baseline).not.toBeNull(); expect(report.scenario).not.toBeNull();
+  if (!report.reconciled) {
+    expect(report.roundingCompatible).toBe(true);
+    expect(report.equityAdjustment).toBe((-BigInt(report.difference.equity)).toString());
+    await expect(page.getByText('Scenario estimate · minor baseline discrepancy')).toBeVisible();
+  }
+  await page.locator('.live-metrics').scrollIntoViewIfNeeded(); await page.screenshot({ path: testInfo.outputPath('reported-risk-desktop.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.getByRole('main').evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath('reported-risk-mobile.png') });
 });
 
 test('live history and owner-operation reads remain usable without a connected signer', async ({ page }, testInfo) => {

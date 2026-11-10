@@ -1,0 +1,64 @@
+{
+  "observedAt": "2026-11-10T05:37:55.988Z",
+  "mode": "PUBLIC_READ_ONLY_NO_TRANSACTIONS",
+  "sdkVersion": "0.32.1",
+  "chainId": 50383,
+  "account": "0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6",
+  "marginBank": "0x478769E1177C0773c43A593DCCc4Ad15F15F1394",
+  "blockNumber": "46346751",
+  "blockHash": "0xf1aee95051765bf9673e0371fff7f06038ff20962a50973654491726ad0cc175",
+  "state": {
+    "unlockedCollateralBalance": "1179820217983566214658",
+    "lockedCollateral": "0",
+    "activePerpPools": [
+      "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0"
+    ]
+  },
+  "health": [
+    "1037596648159367966114",
+    "385432094769671864537",
+    "192716047384835932269",
+    "95587159502878622406"
+  ],
+  "sdk": [
+    "1037596648159367966115",
+    "385432094769671864537",
+    "192716047384835932269",
+    "95587159502878622406"
+  ],
+  "sdkMinusChain": [
+    "1",
+    "0",
+    "0",
+    "0"
+  ],
+  "rows": [
+    {
+      "pool": "0x4181dd08E73BbCdd1Ba3E615A18f6abD941b94C0",
+      "inputs": {
+        "size": "20645000",
+        "avgEntryPrice": "75203868491160087188180",
+        "entryFundingIndex": "8123534596734611821592541749843142218750",
+        "lastUpdatedTimestampNs": "0",
+        "oneBase": "100000000",
+        "markPrice": "74678051783903485500000",
+        "projectedCumulativeFunding": "8286618687851457692352628366374888531250",
+        "effectiveIMFBps": "250",
+        "maintenanceMarginBps": "125",
+        "closeOutMarginBps": "62",
+        "effectiveImfBps": "250"
+      },
+      "metrics": {
+        "size": "20645000",
+        "notional": "15417283790786874581475",
+        "unrealizedPnl": "-108554859213125418524",
+        "accruedFunding": "33668710611072830019",
+        "equityContribution": "-142223569824198248543",
+        "initialMarginRequirement": "385432094769671864537",
+        "maintenanceMarginRequirement": "192716047384835932269",
+        "closeOutMarginRequirement": "95587159502878622406",
+        "returnOnMarginBps": "-3690"
+      }
+    }
+  ]
+}

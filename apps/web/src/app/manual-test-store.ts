@@ -9,7 +9,7 @@ export interface TestNote { status: TestStatus; notes: string; updatedAt?: numbe
 export type TestNotes = Record<string, TestNote>;
 export interface TestScope { owner: string | null; signer: string | null }
 interface Backup { schema: 'pei-manual-backup-v2'; scope: TestScope; revision: number; cases: TestNotes; legacySeen: string | null }
-export const scenarioIds = Array.from({ length: 12 }, (_, i) => `U${String(i + 1).padStart(2, '0')}`);
+export const scenarioIds = Array.from({ length: 24 }, (_, i) => `U${String(i + 1).padStart(2, '0')}`);
 export function testKeys(scope: TestScope) {
   const suffix = `${PERPS_CONFIG.chainId}.${scope.signer?.toLowerCase() ?? 'viewer'}.${scope.owner?.toLowerCase() ?? 'none'}`;
   return { legacy: `pei.manual-tests.v1.${suffix}`, durable: `pei.manual-tests.v2.${suffix}` };
@@ -78,7 +78,7 @@ export function parseTestImport(text: string, scope: TestScope): TestNotes {
   const report = object(JSON.parse(text));
   if (report.schema !== 'pei-manual-tests-v1' || report.chainId !== PERPS_CONFIG.chainId || !address(report.owner) || !address(report.signer)) throw new Error('Choose a PEI guided-tests JSON report for chain 50383.');
   if (!sameScope({ owner: report.owner as string | null, signer: report.signer as string | null }, scope)) throw new Error('This report belongs to a different signer or trading account. Select that same account context before importing.');
-  if (!Array.isArray(report.cases) || report.cases.length > 12) throw new Error('Invalid scenario list.');
+  if (!Array.isArray(report.cases) || report.cases.length > scenarioIds.length) throw new Error('Invalid scenario list.');
   const result: TestNotes = {};
   for (const value of report.cases) {
     const row = object(value);

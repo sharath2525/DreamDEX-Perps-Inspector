@@ -10,11 +10,18 @@ import { ReturnToCase } from '../components/ExecutionJourney';
 import { DataStatus } from '../components/DataStatus';
 import { EvidenceDownload } from '../components/EvidenceDownload';
 
+function RiskAmount({ value, decimals }: { value?: bigint | null; decimals: number }) {
+  const exact = amount(value ?? undefined, decimals);
+  const [whole, fraction = ''] = exact.split('.');
+  const visible = fraction.length > 6 ? `${whole}.${fraction.slice(0, 6)}…` : exact;
+  return <span className="risk-number" title={exact} aria-label={exact}>{visible}</span>;
+}
+
 function FrozenScenario({ snapshot }: { snapshot: AccountSnapshot }) {
   const [params] = useSearchParams();
   const requestedPool = params.get('pool')?.toLowerCase() ?? '';
   const [focusEdit, setFocus] = useState<string | null>(null);
-  const focus = focusEdit ?? (snapshot.positions.some(row => row.pool.toLowerCase() === requestedPool) ? requestedPool : '');
+  const focus = focusEdit ?? (snapshot.positions.some(row => row.pool.toLowerCase() === requestedPool) ? requestedPool : snapshot.positions.length === 1 ? snapshot.positions[0]!.pool.toLowerCase() : '');
   const [uniform, setUniform] = useState('0');
   const [custom, setCustom] = useState<Record<string, string>>({});
   let invalid = '';
@@ -24,7 +31,7 @@ function FrozenScenario({ snapshot }: { snapshot: AccountSnapshot }) {
     queryFn: () => calculateRisk(snapshot, shockBps(uniform), Object.fromEntries(Object.entries(custom).filter(([, value]) => value !== '').map(([pool, value]) => [pool, shockBps(value)]))), placeholderData: keepPreviousData, retry: false, staleTime: Infinity, gcTime: 0 });
   const report = query.data;
   const current = !invalid && !query.error && !query.isPlaceholderData && !query.isFetching;
-  const q = (value?: bigint | null) => amount(value ?? undefined, snapshot.decimals);
+  const q = (value?: bigint | null) => <RiskAmount value={value} decimals={snapshot.decimals} />;
   return <>
     <section className="panel risk-controls"><h2>Frozen scenario</h2><p>Block {snapshot.blockNumber.toString()} · {new Date(snapshot.observedAt).toLocaleString()} · {snapshot.owner}</p>
       <label>Uniform price shock · %<input value={uniform} inputMode="decimal" onChange={event => setUniform(event.target.value)} /></label>
@@ -32,12 +39,15 @@ function FrozenScenario({ snapshot }: { snapshot: AccountSnapshot }) {
       <p>Per-market overrides below replace the uniform shock for that market. Blank means use the uniform shock.</p>
       <label>Focus one market<select value={focus} onChange={event => setFocus(event.target.value)}><option value="">Choose an observed position</option>{snapshot.positions.map(row => <option key={row.pool} value={row.pool.toLowerCase()}>{row.metadata.ok ? row.metadata.value.baseSymbol : row.pool}</option>)}</select></label>
       <div className="input-actions">{[-10, -5, 0, 5, 10].map(value => <button key={value} className="button secondary" disabled={!focus} onClick={() => { setUniform('0'); setCustom({ [focus]: String(value) }); }}>Focused {value > 0 ? '+' : ''}{value}%</button>)}</div>
-      <p>Focused presets hold other markets at 0% and replace previous overrides. Uniform presets affect the whole portfolio. Your frozen baseline stays unchanged.</p>
+      <p>{!focus ? 'Select a position above to enable focused presets. ' : ''}Focused presets change only the selected market; uniform presets change all markets. Both replace previous overrides and keep the baseline frozen.</p>
       {invalid && <p role="alert">{invalid}</p>}{query.error && <p role="alert">{readError(query.error)}</p>}
     </section>
     {report && <>
       {!current && <p className="data-warnings">Values below are from the last valid calculation, not the current edits. Fix inputs or wait for calculation. Export is disabled.</p>}
-      <div className={`data-status ${report.ready ? '' : 'warning'}`}><div><strong>{report.ready ? 'Baseline reconciled exactly with on-chain health' : 'Portfolio totals withheld · incomplete or mismatched baseline'}</strong><p>{report.coverageComplete ? 'All position inputs available.' : 'Unknown or unpriced positions are retained below.'} Reconciliation tolerance: zero raw quote units. {report.difference && `Equity difference ${report.difference.equity}; IM ${report.difference.initialMargin}; MM ${report.difference.maintenanceMargin}; CM ${report.difference.closeOutMargin}.`}</p></div></div>
+      <div className={`data-status ${report.reconciled ? '' : 'warning'}`}><div><strong>{report.reconciled ? 'Baseline reconciled exactly with on-chain health' : report.roundingCompatible ? 'Scenario estimate · minor baseline discrepancy' : 'Portfolio totals withheld · incomplete or mismatched baseline'}</strong>
+        {report.roundingCompatible ? <p>SDK equity differs by {amount(report.difference!.equity, snapshot.decimals)} {snapshot.symbol}. Your baseline uses the contract balance; scenarios are estimates. All margin requirements match. The original difference stays in your export.</p> : <p>{report.coverageComplete ? 'All position inputs available.' : 'Unknown or unpriced positions are retained below.'} {report.ready ? 'No baseline adjustment.' : 'Refresh account data, then choose Use latest snapshot & reset scenarios. If this persists, download the evidence and report the mismatch; do not interpret blank totals as zero risk.'}</p>}
+        {report.difference && <details><summary>Exact baseline comparison</summary><p>SDK minus contract, raw quote units: equity {report.difference.equity.toString()}; IM {report.difference.initialMargin.toString()}; MM {report.difference.maintenanceMargin.toString()}; CM {report.difference.closeOutMargin.toString()}. Frozen equity adjustment {report.equityAdjustment.toString()}. Exact reconciliation: {report.reconciled ? 'yes' : 'no'}.</p>{report.roundingCompatible && <p>The difference fits negative-PnL rounding, but its cause is not confirmed. Scenarios add the SDK price-change delta to chain equity. Floor/truncation comparison envelope: ±{amount(report.roundingEnvelopeRaw, snapshot.decimals)} {snapshot.symbol}; not a guarantee about future contract results.</p>}</details>}
+      </div></div>
       <div className="live-metrics"><article><h3>Equity · baseline → scenario</h3><strong>{q(report.baseline?.equity)} → {q(report.scenario?.equity)}</strong><p>{snapshot.symbol} · shared collateral counted once</p></article><article><h3>Maintenance headroom</h3><strong>{q(report.baseline?.maintenanceHeadroom)} → {q(report.scenario?.maintenanceHeadroom)}</strong><p>{snapshot.symbol} · equity less maintenance requirement</p></article><article><h3>Gross / net notional · scenario</h3><strong>{q(report.scenario?.grossNotional)} / {q(report.scenario?.netNotional)}</strong><p>{snapshot.symbol} · signed net exposure</p></article><article><h3>Gross leverage · scenario</h3><strong>{report.scenario?.grossLeverageBps === null || report.scenario?.grossLeverageBps === undefined ? 'Undefined' : `${amount(report.scenario.grossLeverageBps, 4)}×`}</strong><p>Undefined for non-positive equity or incomplete coverage</p></article></div>
       <p className="coverage-note">Equity is modeled account value including open-position PnL and frozen funding. Maintenance headroom is the amount above the modeled maintenance requirement; it is not spendable cash. Concentration is each position’s share of gross notional, not a predicted loss. {report.rows.length === 0 ? 'This snapshot has no non-flat positions: price shocks have no open-position effect. Future fills of pending orders are not modeled.' : 'Compare positive and negative shocks to see which exposures drive account risk.'}</p>
       {report.scenario && report.scenario.maintenanceHeadroom < 0n && <p className="data-warnings">Scenario equity falls below its modeled maintenance requirement. This is a scenario result, not a forecast of liquidation timing or price.</p>}

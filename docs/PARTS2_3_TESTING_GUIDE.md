@@ -6,7 +6,7 @@ Do the read-only scenarios first. Keep existing Developer Test Lab notes; export
 
 1. Click **Connect wallet** in the header and select your browser extension.
 2. Verify signer `0x9fb5B47901c9aD427b1eA9bb96c182eDD0EEAFc5` and chain 50383.
-3. Review discovered accounts. Discovery may return several indexed owner/derived accounts, or none; it cannot enumerate every bot permission.
+3. Review discovered accounts. Discovery includes owned/derived accounts and indexed trading permissions, with current on-chain checks. A single eligible linked account loads automatically; multiple or uncertain candidates require selection. See [account connection](ACCOUNT_CONNECTION.md) for current behavior and limits.
 4. If the funded account is absent, enter `0xdd4dD2A1e8Ec24d4B0CC1969D6756f8024C50BC6` once and select it as the trading account.
 5. Compare Overview and Positions. Signer STT pays gas; trading-account margin, voucher floor and positions are separate.
 6. Reload and reconnect. The saved public selection should return; a changed wallet/network still requires deliberate fresh setup.
@@ -38,7 +38,7 @@ Expected: chain/hash alone suffice for supported read-only inspection once site 
 
 1. From a mined report click **Inspect resulting positions**. Confirm the receiving account, not the signer, is selected.
 2. Return to the report and click **Explore this market’s risk**.
-3. Wait for **Baseline reconciled exactly with on-chain health**. If totals are withheld, record the reason and stop comparisons.
+3. Read the baseline verdict. Exact reconciliation or a clearly labeled minor-discrepancy estimate can show scenarios; an estimate retains its adjustment in the export. If totals are withheld, record the reason and stop comparisons. See the current [24-case guide](USER_ACCEPTANCE_GUIDE.md) for the distinction.
 4. Select **Focused 0%**. Baseline and scenario should agree.
 5. Select **Focused +10%**, then **Focused -10%**. Check only that market's override changes; uniform shock stays 0%.
 6. For a lone long, a positive price shock improves price PnL; for a short it worsens it. Portfolio equity also depends on other frozen inputs.

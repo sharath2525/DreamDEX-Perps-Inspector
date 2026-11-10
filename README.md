@@ -20,13 +20,13 @@ Open `http://127.0.0.1:5173`. Public reads need no API key or wallet. Trading re
 ## Connect the right account
 
 1. Click **Connect wallet** and select your wallet extension.
-2. The wallet dialog automatically looks up indexed **owner and derived accounts**. Choose the account holding your perps margin.
-3. If a bot-linked account is missing, choose **Manage trading account** and enter its public address once. The SDK indexes do not enumerate every operator relationship; an empty result does not prove no accounts exist.
-4. The browser remembers the public account selected for that signer and restores it on reconnect. Multiple discovered accounts remain selectable.
+2. The wallet dialog looks up owned, derived and indexed **linked trading accounts**. A single eligible linked account loads automatically after current permission checks; multiple accounts require a choice.
+3. If an account is missing or discovery is unavailable, choose **Manage trading account** and enter its public address once. An empty index result does not prove no accounts exist.
+4. The browser remembers the selected account for that signer and testnet, including preferences selected while the wallet is on another network. An explicit choice is not replaced by late discovery.
 5. Verify the roles: **signing wallet pays gas**; **trading account holds margin and receives positions**. Selection and discovery do not establish trading permission.
 6. Switch to chain 50383 when prompted and check market-specific permissions.
 
-Public-address inspection also works without a wallet and is read-only. See the [official Link a Bot guide](https://app.testnet.dreamdex.io/docs/trading/common/link-a-bot).
+Public-address inspection needs no bot link. Direct wallet trading needs no delegation. Trading another dreamDEX account's margin requires that signing address's permission; “Link a bot” grants it without requiring an automated bot. See [account connection and testing](docs/ACCOUNT_CONNECTION.md) and the [official Link a Bot guide](https://app.testnet.dreamdex.io/docs/trading/common/link-a-bot).
 
 ## Features
 
@@ -88,7 +88,7 @@ Expected deployment settings are in `packages/perps-adapter/src/config.ts`. Read
 - Unknown outcomes block further sends. Keep browser data until resolved. Local cross-tab locks do not protect across other devices or apps.
 - Public account selections, execution journals, test notes and theme preferences persist in this browser. Live account queries clear on identity changes. No keys, seed phrases, signatures or signed transactions are stored. Export notes before clearing storage; never enter secrets in notes.
 - Direct orders may draw collateral through existing allowances. A preview is not a hard funding cap. Review funding and gas terms. Operator permission does not grant withdrawal or owner-stop authority.
-- Reports support verified single direct/delegated place, cancel and reduce calls. Arbitrary routers, smart-account batches and complete operator reverse discovery are unsupported. Public reports cannot resolve local journal locks by themselves.
+- Reports support verified single direct/delegated place, cancel and reduce calls. Arbitrary routers and smart-account batches are unsupported. Linked-account discovery is bounded and index-dependent; it is not a complete directory. Public reports cannot resolve local journal locks by themselves.
 - A disappeared remainder does not prove a fill. Block-level changes may include other transactions. History and large-account scans are bounded with coverage warnings.
 - Risk scenarios freeze funding indices, orders and risk parameters. They exclude future fills, fees, funding changes and liquidation actions; they do not predict an exact liquidation price.
 - This is a testnet application, not a mainnet-readiness claim. Automated checks are not a complete security audit. See [security requirements](docs/SECURITY.md) and [capability limits](docs/CAPABILITIES.md).
@@ -105,4 +105,4 @@ No published links have been supplied. Add actual post links here before submiss
 
 ## Documentation
 
-Use the [documentation index](docs/README.md) for setup, testing, SDK references and historical records.
+Use the [step-by-step acceptance guide](docs/USER_ACCEPTANCE_GUIDE.md) for all 24 in-app cases, order-mode tests, every Account operation and the result template. [Product value](docs/PRODUCT_VALUE.md) explains Guided execution, Account operations and the remaining bounty evidence gates. Use the [documentation index](docs/README.md) for SDK references and historical records.

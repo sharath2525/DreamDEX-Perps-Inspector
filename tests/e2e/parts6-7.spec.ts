@@ -51,6 +51,27 @@ test('SDK risk rounding preserves tiny positive/negative funding and ceil margin
   expect(perpPositionAnalytics(inputs)).toMatchObject({ unrealizedPnl: 0n, accruedFunding: 1n, maintenanceMarginRequirement: 1n });
   expect(perpPositionAnalytics({ ...inputs, size: -1n }).accruedFunding).toBe(0n);
 });
+test('negative fractional PnL admits only a directional bounded estimate anchored to contract equity', async () => {
+  const snapshot = riskFixture();
+  const row = snapshot.positions[0]!;
+  const inputs = { size: 1n, avgEntryPrice: 12n, markPrice: 11n, entryFundingIndex: 0n, projectedCumulativeFunding: 1n, oneBase: 10n, effectiveImfBps: 500n, maintenanceMarginBps: 250n, closeOutMarginBps: 125n };
+  row.position = { ok: true, value: { size: 1n, avgEntryPrice: 12n, entryFundingIndex: 0n, lastUpdatedTimestampNs: 0n } };
+  row.analytics = { ok: true, value: { markPrice: 11n, inputs, metrics: perpPositionAnalytics(inputs) } };
+  if (row.metadata.ok) row.metadata.value.baseDecimals = 1;
+  snapshot.positions = [row]; snapshot.state = { unlockedCollateralBalance: 100n, lockedCollateral: 0n, activePerpPools: [POOL] };
+  snapshot.health = { ok: true, value: [98n, 1n, 1n, 1n] };
+  const result = await calculateRisk(snapshot);
+  expect(result).toMatchObject({ ready: true, reconciled: false, roundingCompatible: true, equityAdjustment: -1n, roundingEnvelopeRaw: 2n });
+  expect(result.baseline?.equity).toBe(98n); expect(result.scenario?.equity).toBe(98n);
+  expect((await calculateRisk(snapshot, 10000n)).scenario?.equity).toBe(99n);
+  expect(result.rows[0]?.concentrationBps).toBe(10000n);
+  for (const health of [[97n, 1n, 1n, 1n], [100n, 1n, 1n, 1n], [98n, 1n, 2n, 1n]] as const) {
+    snapshot.health = { ok: true, value: health };
+    expect((await calculateRisk(snapshot)).ready).toBe(false);
+  }
+  snapshot.health = { ok: true, value: [98n, 1n, 1n, 1n] }; snapshot.positionCoverageComplete = false;
+  expect((await calculateRisk(snapshot)).ready).toBe(false);
+});
 const attemptId = '12345678-1234-1234-1234-123456789012';
 function attemptData() {
   const data = encodeFunctionData({ abi: orderWriteAbi, functionName: 'placeOrder', args: [true, 0n, 12000000n, 1000000000n, 1900000000000000000n, 0, 0, zeroAddress, 0n] });
@@ -143,4 +164,23 @@ test('unpriceable risk data and mismatched health withhold totals', async ({ pag
   options.unpriceable = true; await page.getByRole('button', { name: 'Refresh', exact: true }).click();
   await page.getByRole('button', { name: 'Use latest snapshot & reset scenarios' }).click();
   await expect(page.getByText(/No zero value is substituted/)).toBeVisible();
+});
+
+test('bounded risk estimate is disclosed, focused control works, and exports retain discrepancy', async ({ page }, testInfo) => {
+  await mockReads(page, { riskFractionalLoss: true });
+  await page.goto('/positions/risk'); await page.getByLabel('Account to analyze').fill(ACCOUNT_A);
+  await page.getByRole('button', { name: 'Inspect risk account' }).click();
+  await expect(page.getByText('Scenario estimate · minor baseline discrepancy')).toBeVisible();
+  await expect(page.getByText('Baseline reconciled exactly with on-chain health')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Focused +5%', exact: true })).toBeEnabled();
+  await page.getByRole('button', { name: 'Focused +5%', exact: true }).click();
+  await expect(page.getByText(/last valid calculation/)).toHaveCount(0);
+  const pending = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download JSON evidence' }).click();
+  const report = JSON.parse(await readFile((await (await pending).path())!, 'utf8'));
+  expect(report).toMatchObject({ ready: true, reconciled: false, roundingCompatible: true, equityAdjustment: '-1', difference: { equity: '1' } });
+  expect(report.baseline.equity).toBe('99999998'); expect(report.scenario.equity).toBe('100899997'); expect(report.rows[0].bps).toBe('500');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('.live-metrics').scrollIntoViewIfNeeded();
+  expect(await page.getByRole('main').evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath('bounded-risk-mobile.png') });
 });

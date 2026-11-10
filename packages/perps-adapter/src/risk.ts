@@ -49,12 +49,33 @@ export async function calculateRisk(snapshot: RiskSnapshot, uniformBps = 0n, cus
     maintenanceMargin: reconstructed.maintenanceMargin - snapshot.health.value[2], closeOutMargin: reconstructed.closeOutMargin - snapshot.health.value[3],
   } : null;
   const reconciled = !!difference && Object.values(difference).every(value => value === 0n);
-  const ready = coverageComplete && reconciled;
+  // A negative fractional quotient differs by one raw unit between truncation
+  // (SDK 0.32.1) and floor. Admit only that specific, directional envelope;
+  // this is an estimated scenario, NOT proof of the deployed rounding rule.
+  const negativeFractionalPnlRows = snapshot.positions.filter(row => {
+    if (!row.analytics.ok) return false;
+    const p = row.analytics.value.inputs;
+    const numerator = (p.markPrice - p.avgEntryPrice) * p.size;
+    return p.oneBase > 0n && numerator < 0n && numerator % p.oneBase !== 0n;
+  }).length;
+  const roundingCompatible = coverageComplete && !!difference && difference.equity > 0n
+    && difference.equity <= BigInt(negativeFractionalPnlRows)
+    && difference.initialMargin === 0n && difference.maintenanceMargin === 0n && difference.closeOutMargin === 0n;
+  const ready = coverageComplete && (reconciled || roundingCompatible);
+  const equityAdjustment = roundingCompatible && difference ? -difference.equity : 0n;
+  const anchor = (value: ReturnType<typeof totals>) => {
+    const equity = value.equity + equityAdjustment;
+    return { ...value, equity, maintenanceHeadroom: equity - value.maintenanceMargin,
+      initialHeadroom: equity - value.initialMargin, grossLeverageBps: equity > 0n ? value.grossNotional * 10000n / equity : null };
+  };
   return { owner: snapshot.owner, blockNumber: snapshot.blockNumber, observedAt: snapshot.observedAt, decimals: snapshot.decimals, symbol: snapshot.symbol,
     collateral, uniformBps, rows: rows.map(row => ({ ...row, concentrationBps: row.known && ready && reconstructed.grossNotional > 0n ? row.baseline.notional * 10000n / reconstructed.grossNotional : null })),
-    coverageComplete, reconciled, difference, ready, baseline: ready ? reconstructed : null, scenario: ready ? projected : null,
+    coverageComplete, reconciled, difference, ready, roundingCompatible, equityAdjustment,
+    // Bound covers floor/truncation changes at both baseline and shocked marks.
+    roundingEnvelopeRaw: roundingCompatible ? BigInt(known.length) * 2n : 0n,
+    baseline: ready ? anchor(reconstructed) : null, scenario: ready ? anchor(projected) : null,
     orderCount: snapshot.orderCount, orderCoverageComplete: snapshot.orderCoverageComplete,
-    assumptions: ['Snapshot positions, collateral, funding indices and margin rates are frozen.', 'Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.', 'PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.', 'Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.', 'Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.', 'Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee.'],
+    assumptions: ['Snapshot positions, collateral, funding indices and margin rates are frozen.', 'Shared unlocked plus locked collateral is counted once; accrued funding is subtracted once through SDK equity contribution.', 'PnL truncates toward zero; funding rounds toward positive infinity; margin requirements round up, matching SDK 0.32.1.', ...(roundingCompatible ? ['SDK baseline equity exceeds chain health within the negative fractional-PnL floor/truncation envelope; all margin requirements match exactly. The deployed rounding rule is not proven. Baseline equity uses chain health; scenario equity adds the SDK price-shock delta to that baseline. The observed adjustment stays frozen and is exported; this is a bounded estimate, not exact reconciliation.'] : []), 'Shocked prices round down to raw quote units and are hypothetical marks, not executable limit prices.', 'Resting orders are not filled or cancelled in this scenario. Fees, slippage, future funding, deposits, withdrawals and liquidation actions are excluded.', 'Maintenance headroom is a frozen-model comparison, not an exact liquidation price or protection guarantee.'],
   };
 }
 export type RiskReport = Awaited<ReturnType<typeof calculateRisk>>;

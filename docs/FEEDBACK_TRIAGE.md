@@ -1,11 +1,12 @@
-# Feedback review — rechecked 7 November 2026 IST
+# Feedback review — updated 10 November 2026 IST
 
-Two reports are prepared under `feedback/`: a documentation inconsistency and a typed delegated-wrapper feature request. Both are UNSENT with proposed normal severity. No security vulnerability was validated. No award, novelty or organizer acceptance is claimed.
+Three reports are prepared under `feedback/`: a documentation inconsistency, a typed delegated-wrapper feature request, and a pinned-block SDK/contract equity discrepancy. All are UNSENT with proposed normal severity. The first two retain their earlier review dates; the third was reproduced on 10 November. No security vulnerability was validated. No award, novelty or organizer acceptance is claimed.
 
 | Candidate | Evidence and verdict |
 |---|---|
 | Deposit-first SDK comments versus owner auto-pull guide | Reproduced in pinned package declarations; report 001. Documentation inconsistency, no live transfer claim. |
 | Typed delegated Perps wrappers | Declaration inspection confirms the narrower convenience surface; report 002 is a feature request. Official raw ABI route already exists. |
+| SDK equity differs from chain health by one raw unit | Independently reproduced at block 46346751 with SDK 0.32.1. IM/MM/CM match. Report 003 retains raw inputs; a negative-PnL rounding explanation is a hypothesis, not verified deployed-source attribution. |
 | Misleading genesis transport error | Controlled SDK helper test reproduced generic top-level wording, but original cause is retained and retired-chain errors are distinct. Already documented; no separate bug report prepared. |
 | Native stops absent | Rejected: owner stop APIs exist. |
 | No positions/margin/funding analytics | Rejected: APIs exist and live reads passed. |

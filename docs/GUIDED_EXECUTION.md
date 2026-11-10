@@ -20,7 +20,7 @@ The existing journals, manual account selection, permissions, transaction checks
 2. Confirm the current step is **Choose account**.
 3. Choose **Open transaction inspector** to inspect a real existing hash without wallet access.
 4. Return to Guided execution and connect your wallet using the header.
-5. Choose the funded trading account from discovery, or enter its public address once if the SDK indexes omit the bot link.
+5. An eligible single linked account loads automatically; choose explicitly when several accounts exist. Enter its public address once if index coverage is incomplete. See [account connection](ACCOUNT_CONNECTION.md) for exact conditions and tests.
 6. Expected: signer and trading account remain distinct; account snapshot is labelled by block. Selecting an account is not order approval.
 
 ## Scenario 2 — Correct invalid input

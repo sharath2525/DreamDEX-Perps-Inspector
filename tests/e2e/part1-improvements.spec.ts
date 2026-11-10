@@ -54,10 +54,17 @@ test('import validates identity and duplicate IDs, previews conflicts, exports e
   const download = page.waitForEvent('download');
   await page.locator('.guided-tests').getByRole('button', { name: 'Download JSON evidence' }).click();
   const result = JSON.parse(await readFile((await (await download).path())!, 'utf8'));
-  expect(result.cases).toHaveLength(12);
+  expect(result.cases).toHaveLength(24);
   expect(result.cases[3]).toMatchObject({ status: 'FAIL', category: 'PEI application', environment: { sdkVersion: '0.32.1', chainId: 50383, walletChainId: null } });
   expect(result.cases[3].environment.block).toBeUndefined();
   expect(result.cases[9].status).toBe('NOT RUN');
+  // The new 24-case export must also be importable, preserving earlier notes.
+  result.cases[23].status = 'BLOCKED'; result.cases[23].observations = 'No replacement transaction available';
+  await importReport(page, result);
+  await page.getByRole('button', { name: 'Apply reviewed merge' }).click(); await saved(page);
+  await openCase(page, 'U24');
+  await expect(page.getByLabel('Observations for U24')).toHaveValue('No replacement transaction available');
+  await expect(page.getByLabel('Observations for U04')).toHaveValue('Imported failure');
 });
 
 test('cross-tab conflicts preserve both the saved report and unsaved local edits', async ({ page, context }) => {
@@ -151,7 +158,7 @@ test('discovery timeout does not block manual selection or claim no linked accou
   await page.getByRole('button', { name: 'Use trading account', exact: true }).click();
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
   await page.getByText('Set up or change account', { exact: true }).click();
-  await expect(page.getByText(/Discovery unavailable:/)).toBeVisible({ timeout: 25000 });
+  await expect(page.getByText('Discovery is incomplete', { exact: true })).toBeVisible({ timeout: 15000 });
   await page.locator('.header-wallet').click();
   await expect(page.getByRole('dialog').getByText(/Placement is not allowed for this market/)).toBeVisible();
 });

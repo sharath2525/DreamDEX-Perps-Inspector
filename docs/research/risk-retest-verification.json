@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-11-10T12:48:41.885Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "broadRun": {
+      "startTime": "2026-11-10T05:45:09.558Z",
+      "duration": 208285.179,
+      "expected": 137,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "finalFocusedRun": {
+      "startTime": "2026-11-10T05:49:07.162Z",
+      "duration": 74291.665,
+      "expected": 53,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "uniqueCasesCovered": 138,
+    "fixedTestFailure": "24-case import/export test selector included the status badge; corrected to the case summary locator and verified round-trip import"
+  },
+  "deterministicTests": 134,
+  "liveReadTests": 4,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-10T05:49:35.700Z",
+    "status": "PASS",
+    "sourceFilesChecked": 87,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "b15bcafc1ddef5304d05c8b0fe9186787d04551c9c99b98094e656a9674efe4a",
+  "fixes": [
+    "SDK/contract equity discrepancy independently reproduced at block 46346751",
+    "narrowly bounded estimates retain raw discrepancy and chain-anchored baseline",
+    "unexplained and missing-data mismatches still withhold totals",
+    "single-position focused presets enabled automatically"
+  ],
+  "ui": [
+    "shortened risk display with exact accessible/exported values",
+    "24 numbered test cases preserving existing notes",
+    "24-case export/import verified",
+    "comprehensive acceptance guide and honest product-value explanation"
+  ],
+  "browserData": "Existing U01–U12 retained; U13–U24 additive; no clearing or storage-key change",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "SDK/deployed rounding cause unconfirmed; scenario estimates not contract guarantees",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

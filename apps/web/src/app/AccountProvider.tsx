@@ -3,7 +3,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { getAddress, isAddress, type Address } from 'viem';
 import { AccountContext, type WalletChoice, type WalletProvider } from './account-context';
 import { PERPS_CONFIG } from '@pei/perps-adapter';
-import { lastViewedKey, publicAddress, remember, remembered, selectionKey } from './account-selection';
+import { lastViewedKey, publicAddress, remember, remembered, rememberTrading, restorableSelection } from './account-selection';
+import { useTradingAccounts } from './queries';
 
 function firstAddress(value: unknown): Address | null {
   return Array.isArray(value) && typeof value[0] === 'string' && isAddress(value[0]) ? getAddress(value[0]) : null;
@@ -23,6 +24,10 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   });
   const [connecting, setConnecting] = useState(false);
   const [walletError, setWalletError] = useState('');
+  const [selectionSource, setSelectionSource] = useState<'default' | 'manual' | 'restored' | 'automatic' | 'inspection'>('inspection');
+  const selectionIntent = useRef(selectionSource);
+  const connectedAt = useRef(0);
+  const discovery = useTradingAccounts(actor);
   const generation = useRef(0);
   const connection = useRef<{ provider: WalletProvider; actor: Address; chainId: number | null } | null>(null);
   const session = useRef<{ provider: WalletProvider } | null>(null);
@@ -37,23 +42,34 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     }
   }, [queryClient]);
   const inspect = useCallback((address: Address | null) => {
+    selectionIntent.current = 'inspection'; setSelectionSource('inspection');
     clearAccountData(); setViewOnly(true); setOwner(address);
     setStorageWarning(remember(lastViewedKey, address));
   }, [clearAccountData]);
-  const selectTrading = useCallback((address: Address) => {
+  const applyTrading = useCallback((address: Address, source: 'default' | 'manual' | 'restored' | 'automatic' = 'manual') => {
     const valid = publicAddress(address); if (!valid) return;
     const linked = connection.current;
+    const mayResume = source !== 'automatic' || !!session.current;
+    selectionIntent.current = source; setSelectionSource(source);
     clearAccountData(); setTradingOwner(valid); setOwner(valid); setViewOnly(!linked);
     let warning = remember(lastViewedKey, valid);
-    if (linked?.chainId === PERPS_CONFIG.chainId) {
-      warning = remember(selectionKey(linked.actor), valid) || warning;
-      session.current = { provider: linked.provider };
+    if (linked) {
+      // A testnet address preference is not a permission grant. Persist it even
+      // when the browser wallet currently points at a different network.
+      if (source !== 'default') warning = rememberTrading(linked.actor, valid) || warning;
+      if (linked.chainId === PERPS_CONFIG.chainId && mayResume) session.current = { provider: linked.provider };
     }
     setStorageWarning(warning);
   }, [clearAccountData]);
+  const selectTrading = useCallback((address: Address) => applyTrading(address, 'manual'), [applyTrading]);
+  useEffect(() => {
+    if (discovery.isFetching || discovery.error || !discovery.data?.autoSelect || !actor || chainId !== PERPS_CONFIG.chainId) return;
+    if (selectionIntent.current !== 'default' || connection.current?.actor !== actor || discovery.data.observedAt < connectedAt.current) return;
+    applyTrading(discovery.data.autoSelect, 'automatic');
+  }, [actor, chainId, discovery.data, discovery.error, discovery.isFetching, applyTrading]);
   const resumeTrading = useCallback(() => { if (tradingOwner) selectTrading(tradingOwner); }, [tradingOwner, selectTrading]);
   const forgetTrading = useCallback(() => {
-    if (actor) setStorageWarning(remember(selectionKey(actor), null));
+    if (actor) setStorageWarning(rememberTrading(actor, null));
     setTradingOwner(null); inspect(null);
   }, [actor, inspect]);
   const disconnect = useCallback(() => {
@@ -91,11 +107,17 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       if (!address) throw new Error('The wallet did not expose an account.');
       const network = typeof chain === 'string' && /^0x[\da-f]+$/i.test(chain) ? Number(chain) : null;
       connection.current = { provider, actor: address, chainId: network };
-      setActor(address); setChainId(network); selectTrading(remembered(selectionKey(address)) ?? address);
+      connectedAt.current = Date.now();
+      void queryClient.invalidateQueries({ queryKey: ['account-discovery', address] });
+      const saved = restorableSelection(address);
+      setActor(address); setChainId(network); applyTrading(saved ?? address, saved ? 'restored' : 'default');
       const accountsChanged = (value: unknown) => {
         const next = firstAddress(value); if (!next) { disconnect(); return; }
         connection.current = { provider, actor: next, chainId: connection.current?.chainId ?? null };
-        setActor(next); selectTrading(remembered(selectionKey(next)) ?? next);
+        connectedAt.current = Date.now();
+        void queryClient.invalidateQueries({ queryKey: ['account-discovery', next] });
+        const savedNext = restorableSelection(next);
+        setActor(next); applyTrading(savedNext ?? next, savedNext ? 'restored' : 'default');
         session.current = null; // An account event invalidates signing until deliberate resume.
       };
       const chainChanged = (value: unknown) => {
@@ -121,5 +143,5 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       if (network !== PERPS_CONFIG.chainId) setWalletError('Wallet is still on a different network. Select chain 50383 in the wallet.');
     } catch { setWalletError('Network switch rejected or unavailable. Select Somnia testnet (50383) in your wallet.'); }
   }
-  return <AccountContext.Provider value={{ owner, actor, chainId, tradingOwner, viewOnly, identityVersion, storageWarning, choices, connecting, walletError, inspect, connect, disconnect, signingSession, selectTrading, resumeTrading, forgetTrading, switchNetwork }}>{children}</AccountContext.Provider>;
+  return <AccountContext.Provider value={{ owner, actor, chainId, tradingOwner, viewOnly, identityVersion, storageWarning, selectionSource, choices, connecting, walletError, inspect, connect, disconnect, signingSession, selectTrading, resumeTrading, forgetTrading, switchNetwork }}>{children}</AccountContext.Provider>;
 }

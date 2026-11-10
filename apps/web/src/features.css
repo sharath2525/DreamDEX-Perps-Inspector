@@ -5,6 +5,7 @@
 .panel table .address-line { max-width: 220px; }
 .panel > h2, .panel > .coverage-note { margin: 20px; }
 .risk-controls > h2 { margin: 0; }
+.risk-number { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .risk-controls li { font-size: 12px; line-height: 1.8; color: var(--muted); margin: 12px 0; }
 .risk-controls select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--panel); color: var(--text); }
 .risk-controls .confirm-check { display: flex; max-width: none; align-items: center; }
@@ -190,3 +191,17 @@ button:disabled { cursor: not-allowed; }
   .report-tools, .merge-preview { padding: 12px; }
 }
 .execution-report { min-width: 0; margin-block: 1rem; } .execution-report > * + * { margin-top: 1rem; } .report-facts dd, .execution-report code, .execution-report pre { overflow-wrap: anywhere; } .execution-report pre { max-height: 28rem; overflow: auto; white-space: pre-wrap; } .execution-report .input-actions { flex-wrap: wrap; } .execution-report .input-actions > * { min-width: 0; white-space: normal; }
+.account-choice-card { display: grid; gap: 12px; min-width: 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.account-choice-card.selected { border-color: var(--accent); }
+.account-choice-card p { margin: 0; }
+.account-choice-card small, .account-choice-card .choose-account { overflow-wrap: anywhere; white-space: normal; min-width: 0; }
+.account-choice-status { font-size: 12px; color: var(--accent); }
+.account-choice-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; }
+.account-choice-metrics dt { font-size: 12px; color: var(--muted); }
+.account-choice-metrics dd { margin: 6px 0 0; overflow-wrap: anywhere; }
+.account-choice-card .text-button { justify-self: start; background: transparent; color: inherit; border: 0; padding: 8px 0; cursor: pointer; text-decoration: underline; }
+.account-selection-note { border-left: 2px solid var(--accent); padding-left: 12px; }
+.account-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
+.account-paths > div { padding: 14px; border: 1px solid var(--border); border-radius: 8px; }
+.account-paths p { margin-bottom: 0; }
+@media(max-width: 680px) { .account-paths { grid-template-columns: minmax(0, 1fr); } .account-choice-card { padding: 12px; } }
