@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-11-10T16:02:27.458Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "startTime": "2026-11-10T15:59:43.800Z",
+    "duration": 134180.111,
+    "expected": 139,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "deterministicTests": 135,
+  "liveReadTests": 4,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-10T16:00:31.817Z",
+    "status": "PASS",
+    "sourceFilesChecked": 87,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "a6ee511e43867a50b79c00230cc605cdc425c2bdc6d3a127f36d5edebabce011",
+  "fixes": [
+    "legacy guide redirects directly to Trade",
+    "linked Trade only exposes order composition",
+    "full account setup is on demand",
+    "duplicate Inspector empty-state removed"
+  ],
+  "ui": [
+    "four primary navigation areas and related tabs",
+    "advanced controls retained under Tools",
+    "compact current-step guidance",
+    "desktop/mobile screenshots inspected",
+    "24 test scenarios and notes retained"
+  ],
+  "browserData": "No schema change or clearing",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "Operator reverse discovery incomplete",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

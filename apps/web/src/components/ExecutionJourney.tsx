@@ -6,9 +6,8 @@ import type { Hash } from 'viem';
 const steps = ['Choose account', 'Check order', 'Review & sign', 'Verify result', 'Review exposure', 'Save evidence'];
 export function ExecutionJourney({ active, detail }: { active: number; detail: string }) {
   return <section className="execution-journey" aria-label="Execution journey">
-    <div className="journey-heading"><Link to="/guide">Guided execution</Link><span>TESTNET</span></div>
-    <ol>{steps.map((step, index) => <li key={step} aria-current={index === active ? 'step' : undefined} className={index === active ? 'current' : ''}><span className="journey-number">{index + 1}</span><span>{step}</span></li>)}</ol>
-    <p role="status">{detail}</p>
+    <strong aria-current="step">{steps[active]} <small>· {active + 1} of {steps.length}</small></strong>
+    <details><summary>How this step works</summary><p role="status">{detail}</p><ol>{steps.map((step, index) => <li key={step} className={index === active ? 'current' : ''}><span className="journey-number">{index + 1}</span><span>{step}</span></li>)}</ol></details>
   </section>;
 }
 

@@ -1,11 +1,11 @@
 # Guided execution and evidence-backed diagnostics
 
-Implemented 9 November 2026 (Asia/Calcutta). Start at **Guided execution** in the sidebar, or the Overview shortcut.
+Updated 10 November 2026 (Asia/Calcutta). Start at **Trade** in the sidebar. The redundant `/guide` landing page now redirects there. Markets is a Trade tab; History is an Execution Inspector tab; Risk Lab is a Positions tab.
 
 ## What changed
 
-- A dedicated entry page helps users start a new order or inspect an existing transaction.
-- A six-step journey appears during direct trading, delegated trading and receipt inspection. The highlighted step indicates the current task, not a certification that previous tasks passed.
+- Trade opens the order form; Execution Inspector accepts an existing transaction hash without requiring a wallet.
+- A compact current-step label appears during trading and receipt inspection. Expand “How this step works” for the full sequence. It indicates the current task, not certification that previous tasks passed.
 - Diagnostics distinguish local validation, unsigned preflight and submission errors. Error wording supplies a **possible explanation**, never a proven root cause.
 - Mined reports summarize **Observed**, **Unknown** and **Next safe step** for fills, partial fills, remaining orders, cancellation/reduction, reverts and unresolved evidence.
 - Positions and Risk Lab preserve a public case hash in the URL so users can return to the same report and export.
@@ -16,16 +16,16 @@ The existing journals, manual account selection, permissions, transaction checks
 
 ## Scenario 1 — Find the right starting point
 
-1. Open Guided execution without connecting a wallet.
+1. Open Trade without connecting a wallet.
 2. Confirm the current step is **Choose account**.
-3. Choose **Open transaction inspector** to inspect a real existing hash without wallet access.
-4. Return to Guided execution and connect your wallet using the header.
+3. Choose **Execution Inspector** in the sidebar to inspect a real existing hash without wallet access.
+4. Return to Trade and connect your wallet using the header. Expand Manage account if you need setup details.
 5. An eligible single linked account loads automatically; choose explicitly when several accounts exist. Enter its public address once if index coverage is incomplete. See [account connection](ACCOUNT_CONNECTION.md) for exact conditions and tests.
 6. Expected: signer and trading account remain distinct; account snapshot is labelled by block. Selecting an account is not order approval.
 
 ## Scenario 2 — Correct invalid input
 
-1. Choose **Build and check an order**.
+1. Open **Trade** directly.
 2. Select a market and inspect its decimals, tick, lot and minimum.
 3. Enter a quantity exceeding the supported precision.
 4. Expected: local validation blocks preflight and signing. The diagnostic must say local validation failed, not that a transaction reverted.

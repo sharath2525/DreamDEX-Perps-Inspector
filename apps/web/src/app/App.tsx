@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { AppShell } from '../components/AppShell';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { History } from '../pages/History';
@@ -13,13 +13,12 @@ import { Trade } from '../pages/Trade';
 import { Executions } from '../pages/Executions';
 import { RiskLab } from '../pages/RiskLab';
 import { Operations } from '../pages/Operations';
-import { Guide } from '../pages/Guide';
 import '../features.css';
 
 export function App() {
   return <ErrorBoundary><Providers><BrowserRouter><Routes><Route element={<AppShell />}>
     <Route index element={<Overview />} />
-    <Route path="guide" element={<Guide />} />
+    <Route path="guide" element={<Navigate to="/trade" replace />} />
     <Route path="markets" element={<Markets />} />
     <Route path="trade" element={<Trade />} />
     <Route path="trade/:pool" element={<Trade />} />

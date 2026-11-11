@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-11-10T17:57:32.401Z",
+  "status": "PASS_ENGINEERING_CHECKS",
+  "playwright": {
+    "startTime": "2026-11-10T17:55:33.555Z",
+    "duration": 92860.989,
+    "expected": 141,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "deterministicTests": 137,
+  "liveReadTests": 4,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "patternCheck": {
+    "timestamp": "2026-11-10T17:57:32.329Z",
+    "status": "PASS",
+    "sourceFilesChecked": 88,
+    "sdkVersion": "0.32.1",
+    "findings": [],
+    "limitations": "Pattern-based source/bundle checks, not a comprehensive security audit. Wallet signing acceptance remains separate."
+  },
+  "artifactTreeDigest": "9e43c17eafc20aee71c17207ade731619688c9ac097c34d0951d1b182e581d75",
+  "fixes": [
+    "market context retained in precision/liquidity diagnostic links",
+    "filtered order journal empty-state correctness",
+    "explicit wallet/network/session recovery actions",
+    "incomplete discovery message"
+  ],
+  "ui": [
+    "order inputs before expanded full account details",
+    "responsive input grid and compact header",
+    "desktop/mobile screenshots inspected",
+    "advanced operations and saved notes preserved",
+    "submission checklist corrected to three unsent drafts"
+  ],
+  "browserData": "No schema change or clearing",
+  "limits": [
+    "Large SDK/application chunks remain",
+    "Operator reverse discovery incomplete",
+    "No new real signed transaction verified",
+    "Hosting remains owner-private"
+  ]
+}

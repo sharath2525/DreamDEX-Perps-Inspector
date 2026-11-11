@@ -2,10 +2,10 @@ import { Link } from 'react-router';
 import { diagnostic, type DiagnosticCode } from '@pei/perps-adapter';
 import { EvidenceDownload } from './EvidenceDownload';
 
-export function DiagnosticCard({ code, stage, at }: { code: DiagnosticCode; stage: 'validation' | 'preflight' | 'submission'; at: number }) {
+export function DiagnosticCard({ code, stage, at, pool }: { code: DiagnosticCode; stage: 'validation' | 'preflight' | 'submission'; at: number; pool?: string | null }) {
   const explanation = diagnostic(code);
   const next = stage === 'submission' ? { href: '/executions', label: 'Inspect existing attempts' }
-    : code === 'liquidity' || code === 'precision' ? { href: '/markets', label: 'Inspect market rules & book' }
+    : code === 'liquidity' || code === 'precision' ? { href: pool ? `/markets?pool=${encodeURIComponent(pool)}#selected-market` : '/markets', label: 'Inspect market rules & book' }
     : code === 'collateral' || code === 'identity' || code === 'gas' ? { href: '/positions', label: 'Review account & funds' }
     : { href: '/settings', label: 'Check connection settings' };
   const evidence = { schema: 'pei.diagnostic-case.v1', stage, observedAt: at,

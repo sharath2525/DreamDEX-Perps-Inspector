@@ -31,7 +31,6 @@ export function Overview() {
       </article>)}
     </section>
     {snapshot && <p className="coverage-note">{snapshot.orderCount} pending order identifiers · position coverage {snapshot.positionCoverageComplete ? 'complete' : 'partial'} · order coverage {snapshot.orderCoverageComplete ? 'complete within scan bounds' : 'partial'}. Unlocked collateral is bank margin, not wallet gas or necessarily withdrawable funds. {query.error ? 'Values are a previous observation; refresh failed.' : ''} <Link to="/positions/risk">Analyze this account in Risk Lab</Link>.</p>}
-    <div className="case-return"><div><strong>From order to evidence</strong><p>Follow one execution through account setup, checks, receipt verification and exposure.</p></div><Link className="button primary" to="/guide">Start guided execution<ArrowUpRight size={16} aria-hidden="true" /></Link></div>
     <div className="overview-grid">
       <section className="panel execution-panel" aria-labelledby="execution-heading">
         <div className="panel-heading"><div><span className="section-number">01</span><h2 id="execution-heading">Execution activity</h2></div><span className="subtle-badge">LOCAL JOURNAL</span></div>

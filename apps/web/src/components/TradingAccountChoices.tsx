@@ -28,7 +28,7 @@ export function TradingAccountChoices({ workspace = false }: { workspace?: boole
   if (!account.actor) return null;
   return <section className="trading-account-choices" aria-label="Discovered trading accounts">
     <h3>Your trading accounts</h3>
-    <p role="status">{discovery.isFetching ? 'Looking for owned and linked accounts…' : discovery.error ? 'Account discovery unavailable. Retry or enter an address manually.' : discovery.data?.candidates.length ? 'Accounts found. Choose the account you intend to use; no order is sent.' : 'No indexed accounts returned. This does not prove that no trading account exists.'}</p>
+    <p role="status">{discovery.isFetching ? 'Looking for owned and linked accounts…' : discovery.error ? 'Account discovery unavailable. Retry or enter an address manually.' : discovery.data?.candidates.length ? 'Accounts found. Choose the account you intend to use; no order is sent.' : discovery.data?.warnings.length || discovery.data?.truncated ? 'Discovery is incomplete. No account was found in the completed checks; retry or enter its public address.' : 'No indexed accounts returned. This does not prove that no trading account exists.'}</p>
     {!discovery.isFetching && !discovery.error && <div className="account-candidate-list">{discovery.data?.candidates.map(candidate => <Candidate key={candidate.address} candidate={candidate} workspace={workspace} />)}</div>}
     <p className="coverage-note">Finds owned, derived and indexed linked accounts. Missing accounts can still be entered once and remembered in this browser.</p>
     {!!discovery.data?.warnings.length && <details><summary>Discovery is incomplete</summary>{discovery.data.warnings.map(warning => <p key={warning}>{warning}</p>)}</details>}

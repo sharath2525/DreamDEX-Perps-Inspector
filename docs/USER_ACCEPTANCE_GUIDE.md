@@ -188,17 +188,17 @@ Page: `/history`. Read/check steps first; any optional write still needs separat
 
 **Record:** PASS / FAIL / BLOCKED / SKIPPED, exact inputs, screenshot, block and transaction hash if one exists.
 
-## U13 — Guided execution journey
+## U13 — Order-to-evidence workflow
 
-Page: `/guide`. Read/check steps first; any optional write still needs separate confirmation.
+Page: `/trade`. Read/check steps first; any optional write still needs separate confirmation.
 
-1. Confirm the displayed signer and trading account.
-2. Open Build and check an order, or Set up trading account if disconnected.
-3. Return here and open Explain an existing transaction.
-4. Inspect a real supported hash, follow its Positions/Risk links, then return to the same case.
+1. Open Trade directly; use Manage account to confirm the signer and trading account.
+2. Select a market and enter your intended order. Run the unsigned check; inspect its result before any wallet interaction.
+3. Open Execution Inspector from the sidebar and inspect a real supported transaction hash.
+4. Follow the report to Positions or Risk Lab, then return to the same case.
 5. Export the case; check its hash and observed outcome.
 
-**Expected:** The guide connects existing tools into one evidence trail. Selecting an account never means an order passed preflight or filled.
+**Expected:** Trade opens the order form directly. Account setup stays collapsed until needed. Selecting an account never means an order passed preflight or filled.
 
 **Record:** PASS / FAIL / BLOCKED / SKIPPED, exact inputs, screenshot, block and transaction hash if one exists.
 

@@ -95,7 +95,7 @@ h1, h2, h3 { font-weight: 560; }
 .preview-notice p { display: flex; flex-wrap: wrap; gap: 8px; line-height: 1.5; }
 .preview-notice strong { color: var(--text); font-weight: 500; }
 .preview-tag { margin-left: auto; font-size: 8px; letter-spacing: 1px; white-space: nowrap; }
-.page-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 35px 0 27px; }
+.page-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; }
 .eyebrow { color: var(--faint); font-size: 9px; letter-spacing: 1.8px; margin-bottom: 11px; }
 h1 { font-size: clamp(25px, 2.3vw, 36px); letter-spacing: -1.25px; line-height: 1.2; }
 .page-heading p { margin-top: 12px; font-size: 12px; color: var(--muted); line-height: 1.7; max-width: 690px; }
@@ -222,7 +222,7 @@ td { padding: 0 22px; }
   .preview-notice p { gap: 4px; }
   .preview-notice p span { flex-basis: 100%; }
   .preview-tag { display: none; }
-  .page-heading { padding: 28px 0 23px; flex-direction: column; gap: 18px; }
+  .page-heading { padding: 18px 0; flex-direction: column; gap: 14px; }
   .page-heading p { font-size: 12px; }
   .heading-action { padding: 0; }
   h1 { font-size: 28px; letter-spacing: -.95px; }

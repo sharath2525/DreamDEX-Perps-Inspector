@@ -18,7 +18,7 @@ The supplied event screenshot shows **Extended · 8 days left**. Use the live Do
 | Demo/live deployment | PRIVATE PREVIEW DEPLOYED | Owner-only Sites URL in Part 10 handoff; public access and real signed demo remain pending |
 | Two or three X posts tagging @DreamDEXSomnia | NOT POSTED | Genuine public URLs and user-approved accurate claims |
 | Tests and export checks | CODE CHECKS IMPLEMENTED | See part handoffs and release record; actual user-signed E2E remains pending |
-| Feedback reports | TWO LOCAL REPORTS PREPARED, UNSENT | Documentation inconsistency and SDK feature request; proposed normal severity; organizer acceptance and duplicates unconfirmed |
+| Feedback reports | THREE LOCAL DRAFTS, UNSENT | Documentation inconsistency, typed-wrapper feature request and SDK/chain equity discrepancy; proposed normal severity; organizer acceptance and duplicates unconfirmed |
 | Security disclosure | NO VALIDATED FINDING | Private channel only if one is found |
 | Arena/bounty fund separation | DESIGN REQUIREMENT | Verify selected account's funding category before tests |
 | Mainnet conditional milestone | NOT APPLICABLE YET | Separate future authorization and verified launch; no current mainnet trading path |

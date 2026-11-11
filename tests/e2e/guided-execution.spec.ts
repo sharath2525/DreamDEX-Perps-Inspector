@@ -23,24 +23,33 @@ async function wallet(page: Page, actor = ACCOUNT_A) {
 }
 test.beforeEach(async ({ page }) => { await page.route('https://**', route => route.abort()); });
 
-test('guided entry explains account setup and works without wallet access at mobile widths', async ({ page }, info) => {
+test('disconnected order form opens the existing wallet picker from its recovery action', async ({ page }) => {
+  await mockReads(page); await page.goto('/trade');
+  await page.getByRole('button', { name: 'Choose signing wallet', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'Connect a wallet' })).toBeVisible();
+  await expect(page.getByRole('dialog').getByText(/No browser wallet detected/)).toBeVisible();
+});
+
+test('legacy guide opens Trade directly and compact guidance fits mobile widths', async ({ page }, info) => {
   await mockReads(page);
   await page.goto('/guide');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('One order. An explainable outcome.');
+  await expect(page).toHaveURL('/trade');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Start with a checked intent.');
   await expect(page.getByRole('region', { name: 'Execution journey' }).locator('[aria-current="step"]')).toContainText('Choose account');
-  await expect(page.getByRole('link', { name: 'Open transaction inspector' })).toBeVisible();
+  await expect(page.locator('.account-drawer')).not.toHaveAttribute('open');
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.getByRole('main').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
     await page.screenshot({ path: info.outputPath(`guide-${width}.png`), fullPage: true });
   }
-  await page.getByRole('link', { name: 'Open transaction inspector' }).click();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link', { name: 'Execution Inspector', exact: true }).click();
   await expect(page.getByLabel('Testnet transaction hash')).toBeVisible();
 });
 
 test('a preflight diagnostic is a possible explanation, exports no raw error, and clears on edit', async ({ page }) => {
   await mockReads(page, { emptyMargin: true }); await wallet(page);
-  await page.getByRole('link', { name: 'Build and check an order' }).click();
+  await expect(page).toHaveURL('/trade');
   await page.getByLabel('Market', { exact: true }).selectOption(POOL);
   await page.getByLabel('Price', { exact: true }).fill('12');
   await page.getByLabel('Quantity', { exact: true }).fill('1');
@@ -62,12 +71,15 @@ test('a preflight diagnostic is a possible explanation, exports no raw error, an
 
 test('local precision validation never claims that a preflight was run', async ({ page }) => {
   await mockReads(page); await wallet(page);
-  await page.getByRole('link', { name: 'Build and check an order' }).click();
+  await expect(page).toHaveURL('/trade');
   await page.getByLabel('Market', { exact: true }).selectOption(POOL);
   await page.getByLabel('Price', { exact: true }).fill('12');
   await page.getByLabel('Quantity', { exact: true }).fill('1.0000000001');
   await expect(page.getByRole('region', { name: 'Execution diagnosis' })).toContainText('failed local validation');
   await expect(page.getByRole('button', { name: 'Run preflight · no signature' })).toBeDisabled();
+  await page.getByRole('link', { name: 'Inspect market rules & book', exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(POOL + '#selected-market$'));
+  await expect(page.getByRole('heading', { name: 'Resting bids' })).toBeVisible();
 });
 
 test('delegated permission failure gives a recovery path and clears when the action changes', async ({ page }) => {

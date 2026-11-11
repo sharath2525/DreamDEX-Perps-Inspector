@@ -33,7 +33,7 @@ Public-address inspection needs no bot link. Direct wallet trading needs no dele
 | Page | Purpose |
 | --- | --- |
 | Overview | Selected-account equity, unlocked collateral, maintenance headroom, positions and local activity. |
-| Guided execution | A clear starting point for a new order or an existing transaction, with account checkpoints and links to the original local attempts. |
+| Order-to-evidence workflow | Trade opens the order form directly. Compact contextual steps connect unsigned checks, wallet review, receipts and evidence; the old `/guide` URL redirects to Trade. |
 | Markets | Registered pools, market rules, book snapshots and trading constraints. |
 | Trade | Direct limit, bounded IOC, FOK and post-only reviews; linked accounts use delegated post-only placement. |
 | Execution Inspector | Independent reports, receipt fills, current remainder, block-level position changes, gas and JSON/Markdown exports. Local attempts also support recovery and cancellation reviews. |
@@ -54,7 +54,7 @@ Public-address inspection needs no bot link. Direct wallet trading needs no dele
 6. Check receipt events and the remaining order, export evidence, then refresh Positions.
 7. Cancel an unwanted resting remainder with a separate review. Cancellation does not close a filled position.
 
-Use the [guided execution scenarios](docs/GUIDED_EXECUTION.md), [numbered test scenarios](docs/PARTS2_3_TESTING_GUIDE.md) and [cleanup acceptance checks](docs/CLEANUP_REVIEW.md). Nothing trades automatically.
+Start with [the latest order workflow fixes and acceptance steps](docs/WORKFLOW_FIXES.md), then [workspace navigation checks](docs/COMPACT_WORKSPACE.md). Use the [execution scenarios](docs/GUIDED_EXECUTION.md), [numbered test scenarios](docs/PARTS2_3_TESTING_GUIDE.md) and [cleanup acceptance checks](docs/CLEANUP_REVIEW.md). Nothing trades automatically.
 
 The guided flow connects account selection, unsigned checks, wallet review, receipt verification, exposure and export. Diagnostic cards separate an observed validation/check failure from a possible explanation inferred from error wording. Execution cases explain receipt-backed facts and remaining unknowns. Positions and Risk Lab keep a return link to the original report. A concise case summary is separate from the full raw report; neither proves which frontend submitted a transaction.
 

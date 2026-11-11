@@ -4,6 +4,8 @@ Start with the root [README](../README.md). Numbered build handoffs describe ear
 
 ## Use and test
 
+- [Latest order workflow fixes and acceptance steps](WORKFLOW_FIXES.md)
+- [Compact workspace: navigation changes and acceptance steps](COMPACT_WORKSPACE.md)
 - [Start here: all 24 scenarios, exact steps and report format](USER_ACCEPTANCE_GUIDE.md)
 - [What the features solve and how to demonstrate their value](PRODUCT_VALUE.md)
 - [Account connection, automatic discovery and numbered tests](ACCOUNT_CONNECTION.md)

@@ -27,7 +27,9 @@ test('all workspace routes work offline without requesting wallet access', async
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Account overview');
   await expect(page.getByLabel('Not available', { exact: true })).toHaveCount(3);
   for (const [label, path, title] of routes) {
-    await page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link', { name: label, exact: true }).click();
+    const parent = label === 'Markets' ? 'Trade' : label === 'History' ? 'Execution Inspector' : label === 'Risk Lab' ? 'Positions' : null;
+    await page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link', { name: parent ?? label, exact: true }).click();
+    if (parent) await page.getByRole('navigation', { name: 'Workspace tabs' }).getByRole('link', { name: label, exact: true }).click();
     await expect(page).toHaveURL(path);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
     await expect(page.getByRole('main')).toBeFocused();

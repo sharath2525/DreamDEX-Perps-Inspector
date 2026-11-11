@@ -12,11 +12,12 @@ import { PageHeader } from '../components/PageHeader';
 import { Operations } from './Operations';
 import { ExecutionJourney } from '../components/ExecutionJourney';
 import { DiagnosticCard } from '../components/DiagnosticCard';
+import { AccountRecovery } from '../components/AccountRecovery';
 
 export function Trade() {
   const account = useAccount();
   const { pool } = useParams();
-  return account.actor && account.owner && !sameAddress(account.actor, account.owner) ? <Operations key={pool ?? 'linked'} initialPool={pool} /> : <DirectTrade />;
+  return account.actor && account.owner && !sameAddress(account.actor, account.owner) ? <Operations key={pool ?? 'linked'} initialPool={pool} tradeOnly /> : <DirectTrade />;
 }
 function DirectTrade() {
   const { pool: routePool } = useParams();
@@ -68,12 +69,12 @@ function DirectTrade() {
     catch (caught) { if (current.current === key) setIssue({ key, message: readError(caught), stage: 'submission', code: diagnoseFailure(caught).code, at: Date.now() }); }
     finally { inFlight.current = false; setBusy(false); setPrepared(null); setConfirmed(''); }
   }
-  return <>
+  return <div className="order-workspace">
     <PageHeader eyebrow="ORDER WORKSPACE" title="Start with a checked intent." description="Compose a real testnet order, review its costs, then confirm in your wallet." />
     <ExecutionJourney active={!identityReady ? 0 : review && ready ? 2 : attempt && account.owner && sameAddress(attempt.owner, account.owner) ? 3 : 1} detail={!identityReady ? 'Select a signing wallet and trading account on chain 50383.' : review && ready ? 'Unsigned checks passed. Review the terms below; a simulation does not prove a fill.' : attempt && account.owner && sameAddress(attempt.owner, account.owner) ? 'A wallet attempt is recorded. Use its original journal to verify the outcome before any retry.' : 'Enter your order terms, then run preflight without a signature.'} />
-    <p className="coverage-note">Direct account · the signer and trading account are the same. To trade for an app wallet, select its address in account setup.</p>
+
     <div className="trade-grid"><section className="panel trade-form" onChange={() => { setPrepared(null); setConfirmed(''); }}><h2>Order intent</h2>
-      <label>Market<select aria-label="Market" value={poolText} disabled={!!routePool || busy} onChange={event => setSelected(event.target.value)}><option value="">Select a verified market</option>{routePool && !markets.data?.rows.some(row => sameAddress(row.pool, routePool)) && <option value={routePool}>{routePool}</option>}{markets.data?.rows.map(row => <option key={row.pool} value={row.pool}>{row.metadata.ok ? row.metadata.value.baseSymbol : row.pool} / {markets.data.symbol}</option>)}</select></label>
+      <div className="order-fields"><label>Market<select aria-label="Market" value={poolText} disabled={!!routePool || busy} onChange={event => setSelected(event.target.value)}><option value="">Select a verified market</option>{routePool && !markets.data?.rows.some(row => sameAddress(row.pool, routePool)) && <option value={routePool}>{routePool}</option>}{markets.data?.rows.map(row => <option key={row.pool} value={row.pool}>{row.metadata.ok ? row.metadata.value.baseSymbol : row.pool} / {markets.data.symbol}</option>)}</select></label>
       {routePool && <Link to="/trade">Choose another market</Link>}
       {routePool && !pool && <p role="alert">Invalid pool address. Select a verified market.</p>}
       {(markets.error || market.error) && <p role="alert">{readError(market.error ?? markets.error)}</p>}
@@ -82,10 +83,10 @@ function DirectTrade() {
       <label>{isBid ? 'Maximum buy price' : 'Minimum sell price'}{market.data ? ` · ${market.data.symbol}` : ''}<input aria-label="Price" inputMode="decimal" value={price} disabled={busy} onChange={event => setPrice(event.target.value)} placeholder="Enter your price bound" /></label>
       <label>Quantity{market.data ? ` · ${market.data.metadata.baseSymbol}` : ''}<input aria-label="Quantity" inputMode="decimal" value={quantity} disabled={busy} onChange={event => setQuantity(event.target.value)} placeholder="Enter base quantity" /></label>
       <label>Expiry in minutes<input inputMode="numeric" value={expiryMinutes} disabled={busy} onChange={event => setExpiry(event.target.value)} /></label>
-      <label>Maximum gas budget · STT<input inputMode="decimal" value={gasBudget} disabled={busy} onChange={event => setGasBudget(event.target.value)} /></label>
+      <label>Maximum gas budget · STT<input inputMode="decimal" value={gasBudget} disabled={busy} onChange={event => setGasBudget(event.target.value)} /></label></div>
       {market.data && <p>Tick {amount(market.data.metadata.tickSize, market.data.decimals)} · lot {amount(market.data.metadata.lotSize, market.data.metadata.baseDecimals)} · minimum {amount(market.data.metadata.minQuantity, market.data.metadata.baseDecimals)}. Quotes are observations; liquidity can change.</p>}
-      {validation && <><p role="alert">{validation}</p><DiagnosticCard code="precision" stage="validation" at={now} /></>}
-      {!identityReady && <p>A matching owner wallet on chain 50383 is required. Reconnect after account or network changes.</p>}
+      {validation && <><p role="alert">{validation}</p><DiagnosticCard code="precision" stage="validation" at={now} pool={pool} /></>}
+      {!identityReady && <AccountRecovery />}
       <button className="button secondary" disabled={busy || !identityReady || !pool || !price || !quantity || !!validation || !market.data || !!market.error} onClick={() => void check()}>{busy ? 'Checking / waiting…' : 'Run preflight · no signature'}</button>
     </section><section className="panel trade-review"><h2>Review before signing</h2>
       {!review && <p>Preflight verifies the deployment, precision, account capacity, funding and simulated transaction. It never signs.</p>}
@@ -103,10 +104,10 @@ function DirectTrade() {
       </dl><details><summary>Normalized unsigned call</summary><pre>{JSON.stringify(review.call, (_, value) => typeof value === 'bigint' ? value.toString() : value, 2)}</pre></details>
       <label className="confirm-line"><input type="checkbox" checked={confirmed === `${key}:${review.checkedAt}`} disabled={busy || !ready} onChange={event => setConfirmed(event.target.checked ? `${key}:${review.checkedAt}` : '')} /><span>I authorize this testnet order and gas ceiling. Existing MarginBank allowances may fund a shortfall; the funding preview is not a hard spending cap. This order can increase or flip my position.</span></label>
       <button className="button" disabled={busy || !ready || confirmed !== `${key}:${review.checkedAt}`} onClick={() => void send()}>Confirm & open wallet</button></>}
-      {error && issue && <><DiagnosticCard code={issue.code} stage={issue.stage} at={issue.at} /><details open className="technical-details"><summary>Technical error details</summary><p role="alert">{error}</p></details></>}
+      {error && issue && <><DiagnosticCard code={issue.code} stage={issue.stage} at={issue.at} pool={pool} /><details open className="technical-details"><summary>Technical error details</summary><p role="alert">{error}</p></details></>}
       {failure && issue?.key === key && issue.stage === 'preflight' && <><p>Preflight stopped before any wallet request. This is not a mined failure.</p><EvidenceDownload name="preflight-diagnostic" value={rejectionEvidence(failure.code, failure.at)} /></>}
       {attempt && <div role="status"><p>Attempt: {attempt.status}</p>{attempt.hash && <code className="address-line">{attempt.hash}</code>}<Link className="text-link" to={`/executions/${attempt.id}`}>Inspect this attempt</Link></div>}
-      <p>No ordinary reduce-only guarantee. A successful preflight is a simulation, not a fill. The wallet may let you edit fees; verify its final transaction before signing.</p>
+      <details><summary>Execution limits</summary><p>No ordinary reduce-only guarantee. A successful preflight is a simulation, not a fill. The wallet may let you edit fees; verify its final transaction before signing.</p></details>
     </section></div>
-  </>;
+  </div>;
 }

@@ -5,6 +5,23 @@ import { OFFICIAL_LINKS, PERPS_CONFIG } from '@pei/perps-adapter';
 import { navigation } from '../app/navigation';
 import { WalletConnect } from './WalletConnect';
 import { AccountWorkspace } from './AccountWorkspace';
+import { useAccount } from '../app/account-context';
+
+function area(path: string) {
+  if (path === '/markets' || path === '/guide' || path.startsWith('/trade')) return '/trade';
+  if (path === '/history' || path.startsWith('/executions')) return '/executions';
+  if (path === '/positions' || path === '/positions/risk') return '/positions';
+  return path;
+}
+
+function WorkspaceTabs() {
+  const { pathname } = useLocation();
+  const tabs = area(pathname) === '/trade' ? [['/trade', 'Order'], ['/markets', 'Markets']]
+    : area(pathname) === '/executions' ? [['/executions', 'Inspector'], ['/history', 'History']]
+    : area(pathname) === '/positions' ? [['/positions', 'Positions'], ['/positions/risk', 'Risk Lab']] : [];
+  if (!tabs.length) return null;
+  return <nav className="workspace-tabs" aria-label="Workspace tabs">{tabs.map(([path, label]) => <NavLink key={path} to={path!} end={path === '/positions'}>{label}</NavLink>)}</nav>;
+}
 
 function Brand() {
   return <NavLink to="/" className="brand" aria-label="Perps Execution Inspector overview">
@@ -18,12 +35,15 @@ function ScanMark() {
 }
 
 function Navigation({ onNavigate }: { onNavigate?: () => void }) {
+  const { pathname } = useLocation();
+  const primary = ['/', '/trade', '/executions', '/positions'];
+  const utilities = ['/positions/manage', '/test-lab', '/settings'];
+  const item = ({ path, label, icon: Icon }: typeof navigation[number]) => <NavLink key={path} to={path} onClick={onNavigate} className={`nav-item ${area(pathname) === path ? 'active' : ''}`}><Icon size={18} aria-hidden="true" /><span>{label}</span></NavLink>;
   return <nav aria-label="Workspace navigation" className="nav-list">
     <div className="nav-label">WORKSPACE</div>
-    {navigation.map(({ path, label, icon: Icon }) => <NavLink key={path} to={path} end={path === '/' || path === '/positions'} onClick={onNavigate}
-      className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-      <Icon size={18} aria-hidden="true" /><span>{label}</span>
-    </NavLink>)}
+    {navigation.filter(row => primary.includes(row.path)).map(item)}
+    <div className="nav-label">TOOLS</div>
+    {navigation.filter(row => utilities.includes(row.path)).map(item)}
   </nav>;
 }
 
@@ -41,6 +61,7 @@ function initialTheme(): 'dark' | 'light' {
 }
 
 export function AppShell() {
+  const account = useAccount();
   const navType = useNavigationType();
   const location = useLocation();
   const [theme, setTheme] = useState(initialTheme);
@@ -49,6 +70,7 @@ export function AppShell() {
   const previousKey = useRef(location.key);
   const scrollPositions = useRef(new Map<string, number>());
   const setup = useRef<HTMLDetailsElement>(null);
+  const accountPanel = useRef<HTMLDetailsElement>(null);
   const current = navigation.find(item => item.path === location.pathname)?.label
     ?? navigation.find(item => item.path !== '/' && location.pathname.startsWith(item.path + '/'))?.label
     ?? 'Workspace';
@@ -96,6 +118,7 @@ export function AppShell() {
   }, [location.key, location.hash, current, navType]);
 
   function openSetup() {
+    if (accountPanel.current) accountPanel.current.open = true;
     if (setup.current) setup.current.open = true;
     const input = document.getElementById('shared-trading-account');
     input?.focus({ preventScroll: true });
@@ -112,7 +135,11 @@ export function AppShell() {
       </header>
       <main id="main-content" className="main-content" ref={main} tabIndex={-1}>
         <div className="workspace-page">
-        <AccountWorkspace setupRef={setup} />
+        <details key={location.pathname} className="account-drawer" ref={accountPanel} open={location.pathname === '/positions'}>
+          <summary><span>{account.viewOnly ? 'Viewing account' : 'Trading account'} <strong>{account.owner ? `${account.owner.slice(0, 6)}…${account.owner.slice(-4)}` : 'Not selected'}</strong></span><span>{account.actor && account.chainId !== PERPS_CONFIG.chainId ? 'Wrong network · manage' : account.viewOnly && account.actor ? 'Read-only · manage' : 'Manage account'}</span></summary>
+          <AccountWorkspace setupRef={setup} />
+        </details>
+        <WorkspaceTabs />
         <Outlet />
         <footer className="content-footer"><span>Perps Execution Inspector<span className="footer-dot">·</span>dreamDEX on Somnia</span><span><CircleHelp size={14} aria-hidden="true" />Testnet only. Every send requires confirmation.</span></footer>
         </div>

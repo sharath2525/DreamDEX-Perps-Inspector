@@ -2,9 +2,11 @@
 
 PEI is an execution diagnostic tool for dreamDEX traders and builders. Its useful loop is: select the correct account → check a specific order → sign deliberately → verify its actual outcome → examine exposure → export reproducible evidence.
 
-## Guided execution: the starting path
+## Order-to-evidence workflow: start in Trade
 
-- It connects existing screens into a task a first-time user can finish.
+- Trade opens the order form directly; the redundant guide landing page has been removed. The old `/guide` link redirects to Trade.
+- Four main areas organize the workflow: Overview, Trade (with Markets), Execution Inspector (with History), and Positions (with Risk Lab).
+- Account setup is behind a compact Manage account disclosure; advanced Account operations and Developer Test Lab remain under Tools.
 - It distinguishes your signing wallet from the trading account holding margin.
 - It sends you to order checks, then receipt evidence, Positions and Risk Lab.
 - It retains the transaction context when you move to exposure analysis and back.

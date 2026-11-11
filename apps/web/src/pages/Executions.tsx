@@ -85,13 +85,11 @@ export function Executions() {
   const { records, error } = useAttempts();
   const selected = records.find(row => row.id === attemptId);
   return <><PageHeader eyebrow="EXECUTION INSPECTOR" title="See what really happened." description="Local attempts matched to chain transactions, receipts and current positions." />
-    <p className="coverage-note">This device’s journal is not complete trading history. It stores public transaction metadata locally, without keys or signatures. A hash or successful receipt alone is not proof of a fill.</p>
     <PublicTransactionInspector />
     {error && <p role="alert" className="data-warnings">{error} Sending is blocked until reliable storage is available.</p>}
     {attemptId && !selected && <section className="panel panel-message">Execution record not found on this device. <Link to="/executions">View local attempts</Link>.</section>}
     {selected && <InspectAttempt key={selected.id} attempt={selected} />}
     {!attemptId && <section className="panel"><LocalActivity /></section>}
-    {!records.length && !error && <section className="panel feature-empty"><h2>No local execution attempts</h2><p>No order has been submitted from this browser journal.</p><Link className="button secondary" to="/trade">Open order workspace</Link></section>}
     {!!records.length && <section className="panel attempt-list"><h2>Local attempts</h2>{records.map(row => <Link key={row.id} to={`/executions/${row.id}`}><span>{row.kind === 'place' ? 'Order' : 'Cancel'} · {row.status}</span><small>{new Date(row.createdAt).toLocaleString()} · {row.hash ?? row.id}</small></Link>)}</section>}
   </>;
 }

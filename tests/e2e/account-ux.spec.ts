@@ -46,7 +46,11 @@ async function selectFunded(page: Page) {
   await page.getByRole('button', { name: 'Use trading account', exact: true }).click();
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
 }
-async function navigate(page: Page, label: string) { await page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link', { name: label, exact: true }).click(); }
+async function navigate(page: Page, label: string) {
+  const parent = label === 'Risk Lab' ? 'Positions' : null;
+  await page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link', { name: parent ?? label, exact: true }).click();
+  if (parent) await page.getByRole('navigation', { name: 'Workspace tabs' }).getByRole('link', { name: label, exact: true }).click();
+}
 
 test('under the shipping CSP indexed candidates are deduplicated and selected deliberately', async ({ page }) => {
   await wallet(page, true);
@@ -85,18 +89,20 @@ test('funded account persists across pages and reconnect, signer stays separate'
   await expect(page.locator('.metric-card').first().locator('.metric-value')).toContainText('103');
   await navigate(page, 'Trade');
   await expect(page.getByLabel('Receiving owner account')).toHaveValue(ACCOUNT_A);
-  await expect(page.getByRole('combobox', { name: 'Action', exact: true })).toHaveValue('delegate-place');
+  await expect(page.getByRole('combobox', { name: 'Action', exact: true })).toHaveCount(0);
+  await expect(page.getByText('Post-only limit · linked account', { exact: true })).toBeVisible();
   await navigate(page, 'Risk Lab');
   await expect(page.getByText('Baseline reconciled exactly with on-chain health')).toBeVisible();
   await page.screenshot({ path: info.outputPath('linked-risk-desktop.png'), fullPage: true });
   await page.reload();
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
-  await expect(page.getByText('Viewing account · read-only', { exact: true })).toBeVisible();
+  await expect(page.locator('.account-drawer > summary')).toContainText('Viewing account');
   await page.getByRole('button', { name: 'Connect wallet', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Connect a wallet' });
   await dialog.getByRole('button', { name: /Browser wallet/ }).click();
   await page.getByRole('button', { name: 'Close wallet dialog' }).click();
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
+  await page.locator('.account-drawer > summary').click();
   await expect(page.getByRole('region', { name: 'Shared account setup' })).toContainText(ACCOUNT_B);
   expect(await page.evaluate(() => (window as unknown as { uxWallet: { sends: number } }).uxWallet.sends)).toBe(0);
 });
@@ -110,6 +116,7 @@ test('public lookup retains connection but blocks writes until deliberate return
   await expect(page.getByRole('button', { name: 'Disconnect', exact: true })).toBeVisible();
   await navigate(page, 'Trade');
   await expect(page.getByRole('button', { name: 'Run preflight · no signature' })).toBeDisabled();
+  await page.locator('.account-drawer > summary').click();
   await page.getByRole('button', { name: 'Return to trading account' }).click();
   await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
   await expect(page.getByLabel('Receiving owner account')).toHaveValue(ACCOUNT_A);
@@ -126,6 +133,44 @@ test('linked trader can inspect the selected book and return to the same market'
   await expect(page.getByLabel('Receiving owner account')).toHaveValue(ACCOUNT_A);
 });
 
+test('compact trade keeps account setup on demand and advanced operations accessible', async ({ page }, info) => {
+  await wallet(page); await selectFunded(page); await navigate(page, 'Trade');
+  await expect(page.locator('.account-drawer')).not.toHaveAttribute('open');
+  await expect(page.getByLabel('Receiving owner account')).toHaveAttribute('readonly', '');
+  await expect(page.getByLabel('Receiving owner account')).not.toBeVisible();
+  await page.getByText('Signing and trading account details', { exact: true }).click();
+  await expect(page.getByLabel('Receiving owner account')).toBeVisible();
+  await page.getByText('Signing and trading account details', { exact: true }).click();
+  await expect(page.getByRole('combobox', { name: 'Action', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Workspace navigation' }).getByRole('link')).toHaveCount(7);
+  await expect(page.getByRole('navigation', { name: 'Workspace tabs' }).getByRole('link', { name: 'Markets', exact: true })).toBeVisible();
+  await page.screenshot({ path: info.outputPath('compact-linked-trade-desktop.png'), fullPage: true });
+  await page.locator('.header-wallet').click();
+  await page.getByRole('button', { name: 'Manage trading account', exact: true }).click();
+  await expect(page.locator('.account-drawer')).toHaveAttribute('open', '');
+  await expect(page.getByLabel('Trading account address · saved for this signer')).toBeFocused();
+  await page.locator('.account-drawer > summary').click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.getByRole('main').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
+  expect((await page.getByLabel('Operation market').boundingBox())!.y).toBeLessThan(600);
+  await page.screenshot({ path: info.outputPath('compact-linked-trade-mobile.png'), fullPage: true });
+  await page.getByRole('link', { name: 'Manage existing orders, collateral and permissions' }).click();
+  await expect(page.getByRole('combobox', { name: 'Action', exact: true })).toBeVisible();
+  await expect(page.getByLabel('Receiving owner account')).not.toHaveAttribute('readonly');
+  expect(await page.evaluate(() => (window as unknown as { uxWallet: { sends: number } }).uxWallet.sends)).toBe(0);
+});
+
+test('order recovery switches network and resumes explicitly without a transaction', async ({ page }) => {
+  await wallet(page); await selectFunded(page); await navigate(page, 'Trade');
+  await page.evaluate(() => { const state = (window as unknown as { uxWallet: { chain: string; emit(e: string, v: unknown): void } }).uxWallet; state.chain = '0x1'; state.emit('chainChanged', '0x1'); });
+  await page.getByRole('button', { name: 'Switch network to 50383', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Check operation · no signature' })).toBeDisabled();
+  await page.getByRole('button', { name: 'Resume selected trading account', exact: true }).click();
+  await expect(page.getByTestId('selected-account')).toHaveText(ACCOUNT_A);
+  await expect(page.getByRole('button', { name: 'Resume selected trading account', exact: true })).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { uxWallet: { sends: number } }).uxWallet.sends)).toBe(0);
+});
+
 test('network change invalidates checked delegated call even after returning to testnet', async ({ page }) => {
   await wallet(page); await selectFunded(page); await navigate(page, 'Trade');
   await page.getByLabel('Operation market').selectOption(POOL);
@@ -136,6 +181,7 @@ test('network change invalidates checked delegated call even after returning to 
   await page.evaluate(() => { const state = (window as unknown as { uxWallet: { chain: string; emit(e: string, v: unknown): void } }).uxWallet; state.chain = '0x1'; state.emit('chainChanged', '0x1'); });
   await expect(page.getByRole('button', { name: 'Confirm operation & open wallet' })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Check operation · no signature' })).toBeDisabled();
+  await page.locator('.account-drawer > summary').click();
   await page.getByRole('button', { name: 'Switch wallet to testnet' }).click();
   await page.getByRole('button', { name: 'Return to trading account' }).click();
   await expect(page.getByRole('button', { name: 'Confirm operation & open wallet' })).toHaveCount(0);
