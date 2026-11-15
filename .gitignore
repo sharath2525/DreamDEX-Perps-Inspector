@@ -13,4 +13,5 @@ test-results/
 Thumbs.db
 .vite/
 .release/
+.vercel/
 

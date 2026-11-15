@@ -15,7 +15,15 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. Public reads need no API key or wallet. Trading requires a supported browser wallet, testnet STT for gas, and an eligible funded trading account. Never put keys or seed phrases in this repository or in `VITE_*` variables.
 
-[Hosted application](https://perps-execution-inspector.sharathprvtairdrops.chatgpt.site) — currently owner-private. A private deployment is not a publicly accessible judging demo.
+[Vercel application](https://dream-dex-perps-inspector.vercel.app) — verify the deployed commit and access before recording. The older Sites deployment is separate and owner-private.
+
+## Production deployment
+
+No environment variables or API keys are required. Use the repository root in Vercel, Node 22.x/24.x, and the committed `vercel.json`: it builds with `npm run build && node scripts/check-production.mjs` and publishes `apps/web/dist`. See [exact deployment and smoke-test steps](docs/PRODUCTION_DEPLOYMENT.md).
+
+Developer Test Lab is excluded from the production route, navigation and JavaScript. It remains available through `npm run dev` or an explicit local `npm run build:qa`. Existing browser notes are not deleted; different hosting domains have separate storage. Never deploy the QA artifact.
+
+Use the [1–2 minute video script](docs/VIDEO_SCRIPT_2_MINUTES.md) for the recording. It includes exact narration, screen actions and honest alternatives for resting orders or replayed footage.
 
 ## Connect the right account
 
@@ -41,7 +49,7 @@ Public-address inspection needs no bot link. Direct wallet trading needs no dele
 | Risk Lab | Frozen baseline, uniform/per-market shocks and exports. Totals are withheld if inputs are incomplete or reconciliation fails. |
 | Account operations | Separately reviewed margin, voucher, owner-stop and delegated place/cancel/reduce operations, subject to eligibility. |
 | History | Bounded indexed history, loaded-record filters and exports. |
-| Developer Test Lab | Read-only diagnostics, manual cases, saved notes and validated note import/export. |
+| Developer Test Lab — local QA only | Read-only diagnostics, manual cases, saved notes and validated note import/export. Excluded from the public production build. |
 | Settings | Deployment configuration, SDK version and storage information. |
 
 ## Test an order
@@ -65,9 +73,10 @@ npm run lint
 npm run build
 npx playwright install chromium
 npm run test:e2e
+npm run test:production
 ```
 
-`build` includes TypeScript checks for the app, adapter and browser tests. Tests use the built app on localhost port 4173. `npm run check` runs lint, build and deterministic tests together. Set `PEI_LIVE_READS=1` for optional public read-only tests. Synthetic fixtures are never real trading evidence.
+`build` includes TypeScript checks for the app, adapter and browser tests. `test:e2e` builds the local QA profile, including developer tools, then tests on port 4173. `test:production` rebuilds without developer tools and checks the public artifact and routes. `npm run check` runs lint and both suites, leaving a production build last. Set `PEI_LIVE_READS=1` for optional public read-only QA tests. Synthetic fixtures are never real trading evidence.
 
 For a production preview, run `npm run preview`. Static hosts must fall back to `index.html` for app routes. See the [release runbook](docs/RELEASE_RUNBOOK.md).
 

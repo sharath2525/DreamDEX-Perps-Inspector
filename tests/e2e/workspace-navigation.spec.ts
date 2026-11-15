@@ -22,6 +22,7 @@ test('new route starts at the top and Back restores the scroll pane', async ({ p
   await page.route('https://**', route => route.abort());
   await page.setViewportSize({ width: 1280, height: 700 });
   await page.goto('/test-lab');
+  await expect(page.getByRole('button', { name: 'Run read-only diagnostics', exact: true })).toBeVisible();
   const main = page.getByRole('main');
   await main.evaluate(el => { el.scrollTop = 375; });
   await expect.poll(() => main.evaluate(el => el.scrollTop)).toBe(375);

@@ -4,6 +4,8 @@ Start with the root [README](../README.md). Numbered build handoffs describe ear
 
 ## Use and test
 
+- [Vercel production settings, environment and deployment checks](PRODUCTION_DEPLOYMENT.md)
+- [1–2 minute video: timed screen actions and narration](VIDEO_SCRIPT_2_MINUTES.md)
 - [Latest order workflow fixes and acceptance steps](WORKFLOW_FIXES.md)
 - [Compact workspace: navigation changes and acceptance steps](COMPACT_WORKSPACE.md)
 - [Start here: all 24 scenarios, exact steps and report format](USER_ACCEPTANCE_GUIDE.md)

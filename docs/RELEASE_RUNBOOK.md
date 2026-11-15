@@ -12,12 +12,15 @@ npm run lint
 npm run build
 npx playwright install chromium
 npm run test:e2e
+npm run test:production
 npm run dev
 ```
 
 No environment secrets or API keys are required. Live browser reads are opt-in with `PEI_LIVE_READS=1`. `node scripts/verify-history.mjs` and `node scripts/verify-operations.mjs` save public read evidence. `node scripts/release-check.mjs` scans application source/bundles for specific embedded-secret patterns, fixture leakage and SDK pin drift; this is not a comprehensive security audit.
 
 ## Static deployment
+
+For the current Vercel project use [production deployment instructions](PRODUCTION_DEPLOYMENT.md) and root `vercel.json`. The QA suite deliberately builds developer tools; always run `npm run build` or `npm run test:production` afterward before staging any release. The public artifact check rejects Developer Test Lab code.
 
 The app is browser-only. Build output is `apps/web/dist`; `node scripts/stage-static.mjs` copies it to `dist` for the private Sites deployment. Both folders are ignored. The hosting identity lives in `.openai/hosting.json`; preserve it for updates. No wallet journal, node_modules, local .env, signing material or test fixtures belong in the deployed assets. Hosts must fall back to `index.html` on application routes. `_redirects` and `_headers` are provided for compatible hosts; check actual host behavior, not just the files' presence.
 

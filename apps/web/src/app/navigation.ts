@@ -1,4 +1,5 @@
 import { Activity, ArrowLeftRight, ChartNoAxesCombined, FlaskConical, History, LayoutDashboard, ScanLine, Settings2, WalletCards } from 'lucide-react';
+import { DEV_TOOLS_ENABLED } from './build-profile';
 
 export const navigation = [
   { path: '/', label: 'Overview', icon: LayoutDashboard },
@@ -10,6 +11,6 @@ export const navigation = [
   { path: '/positions/risk', label: 'Risk Lab', icon: Activity },
   { path: '/positions/manage', label: 'Account operations', icon: WalletCards },
   { path: '/history', label: 'History', icon: History },
-  { path: '/test-lab', label: 'Developer Test Lab', icon: FlaskConical },
+  ...(DEV_TOOLS_ENABLED ? [{ path: '/test-lab', label: 'Developer Test Lab', icon: FlaskConical }] : []),
   { path: '/settings', label: 'Settings', icon: Settings2 },
 ] as const;

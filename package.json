@@ -8,11 +8,13 @@
   "scripts": {
     "dev": "npm run dev --workspace @pei/web",
     "build": "npm run typecheck && npm run build --workspace @pei/web",
+    "build:qa": "npm run typecheck && npm run build --workspace @pei/web -- --mode qa",
     "preview": "npm run preview --workspace @pei/web",
     "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.tools.json",
     "lint": "eslint .",
-    "test:e2e": "playwright test",
-    "check": "npm run lint && npm run build && npm run test:e2e"
+    "test:e2e": "npm run build:qa && playwright test",
+    "test:production": "npm run build && node scripts/check-production.mjs && playwright test --config playwright.production.config.ts",
+    "check": "npm run lint && npm run test:e2e && npm run test:production"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

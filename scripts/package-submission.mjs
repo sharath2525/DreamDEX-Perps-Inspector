@@ -11,7 +11,7 @@ if (!destination.startsWith(release + sep)) throw new Error('Invalid source dest
 mkdirSync(destination, { recursive: true });
 const exclude = new Set(['node_modules', 'dist', '.git', '.vite', 'test-results', 'playwright-report', '.release', '.openai']);
 for (const folder of ['apps', 'packages', 'scripts', 'tests', 'docs', 'feedback']) cpSync(join(root, folder), join(destination, folder), { recursive: true, filter: path => !relative(root, path).split(sep).some(part => exclude.has(part) || part.startsWith('.env')) });
-for (const file of ['package.json', 'package-lock.json', 'README.md', 'eslint.config.js', 'playwright.config.ts', 'tsconfig.base.json', 'tsconfig.tools.json', '.gitignore', '.npmrc', '.env.example']) cpSync(join(root, file), join(destination, file));
+for (const file of ['package.json', 'package-lock.json', 'README.md', 'eslint.config.js', 'playwright.config.ts', 'playwright.production.config.ts', 'vercel.json', 'tsconfig.base.json', 'tsconfig.tools.json', '.gitignore', '.npmrc', '.env.example']) cpSync(join(root, file), join(destination, file));
 const files = [];
 function walk(folder) { for (const entry of readdirSync(folder, { withFileTypes: true })) { const path = join(folder, entry.name); if (entry.isDirectory()) walk(path); else files.push({ path: relative(destination, path).split(sep).join('/'), sha256: createHash('sha256').update(readFileSync(path)).digest('hex') }); } }
 walk(destination); files.sort((a, b) => a.path.localeCompare(b.path));
